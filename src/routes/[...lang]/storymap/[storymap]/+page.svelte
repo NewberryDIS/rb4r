@@ -25,7 +25,7 @@
         <a class="home-btn" href="{base}/{$page.params.lang.replaceAll('/','')}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose Another Map": "Choose Another Map but in Spanish"}</a>
     </div>
     <div class="right">
-        <iframe src="{ storymapurl }" frameborder="0" name="storymap i-frame"></iframe>
+        <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe>
     </div>
 </main>
 <style>
