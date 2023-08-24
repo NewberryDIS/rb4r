@@ -1,4 +1,4 @@
-import adapter from "@sveltejs/adapter-static";
+import adapter from "@sveltejs/adapter-vercel";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -23,7 +23,9 @@ const config = {
         "/es/storymap/england",
       ],
     },
-    adapter: adapter(),
+    adapter: adapter({
+      runtime: "nodejs18.x",
+    }),
     paths: {
       base: "/rb4r",
     },
