@@ -1,20 +1,21 @@
 <script>
 	import { page } from '$app/stores';
+    import {base } from '$app/paths'
 	export let content;
 </script>
 
 <header>
 	<div class="header-left">
 		<a href="https://www.newberry.org/" class="center nolines" target="_blank">
-			<img src="/NewberryLogo.png" height="64" width="317" alt={content.logoalt} />
+			<img src="{base}/NewberryLogo.png" height="64" width="317" alt={content.logoalt} />
 		</a>
 	</div>
 	<div class="header-right">
 		<div class="change-lang">
-			<a href="es" class={$page.params.lang === 'es' ? 'active' : ''}>
+            <a href="{base}/es" class={$page.params.lang === 'es' ? 'active' : ''}>
 				{content.es}
 			</a>
-			<a href="/" class={$page.params.lang !== 'es' ? 'active' : ''}>
+            <a href="{base}/" class={$page.params.lang !== 'es' ? 'active' : ''}>
 				{content.en}
 			</a>
 		</div>
@@ -30,7 +31,6 @@
 		height: 75px;
 		left: 0;
 		right: 0;
-		z-index: 999;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

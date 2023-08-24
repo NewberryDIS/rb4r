@@ -9,13 +9,17 @@
     $: lang = $page.params.lang || 'en';
     $: content = lang in allContent ? allContent[lang] : allContent.en;
     let activeValue = 99
-    $: console.log(activeValue)
+    // $: console.log($page.params.lang ? 'pageparams' : 'asdf')
+    $: console.log("lang in all content", lang in allContent)
+    function handleBodyClick(event){
+        if (!['A', 'BUTTON', 'circle'].includes( event.target.nodeName ) ){
+            activeValue = 99
+        }
+    }
+    // $: console.log(activeValue)
 </script>
-
+<svelte:body on:click={(e) => handleBodyClick(e)} />
 <Header {content} />
-{#each allContent.tiles as circe, idx}
-    <Circle bind:activeValue {circe} {idx} />
-{/each}
 <!-- <Map bind:activeValue /> -->
 <div class="content">
     <div class="content-text">
@@ -27,6 +31,9 @@
             <Square {tile} bind:activeValue  {idx} />;
         {/each}
     </div>
+{#each allContent.tiles as circe, idx}
+    <Circle bind:activeValue {circe} {idx} />
+{/each}
 </div>
 <style>
     .content {
@@ -37,7 +44,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 1;
         background: linear-gradient(90deg, #000, transparent 94%),
             url('https://collections.newberry.org/IIIF3/Image/2KXJ8ZSFBTPJ9/350,250,1450,1050/max/0/default.jpg');
         background-position: bottom left;
