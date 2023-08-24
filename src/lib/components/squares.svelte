@@ -59,7 +59,7 @@
     }
     .card {
         position: fixed;
-        bottom: 0;
+        top: 75px;
         width: 20vw;
         display: flex;
         flex-direction: column;
