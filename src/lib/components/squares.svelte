@@ -2,7 +2,8 @@
     import {page} from '$app/stores'
     export let tile, activeValue, idx
     $: countrykey  = 'country' +  ( $page.params.lang === 'es' ? 'es' : 'en' )
-    $: console.log(activeValue)
+    // $: console.log(activeValue)
+
     function handleTap (int){
         activeValue = activeValue == int ? 99 : int
     }
@@ -13,19 +14,19 @@
     }
     $: active = activeValue === idx
 </script>
-<a href="storymap/{tile.countrykey}" class="card {active ? "active" : "inactive"}" style="left: {idx * 20}vw; right: {idx * 20 + 20}vw;">
+<div  class="card {active ? "active" : "inactive"}" style="left: {idx * 20}vw; right: {idx * 20 + 20}vw;"  >
+        {#if active}
+    <a href="/storymap/{tile.countrykey}" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://collections.newberry.org/IIIF3/Image/{tile.image}/square/,160/0/default.jpg;">
+            {tile.text}
+    </a>
+        {/if}
         <button class="header" style=" background-color: #{tile.color};" on:click={() => handleTap(idx)} on:keyup={() => handleKeyup(idx)}>
             {tile[countrykey]}
     </button>
-        {#if active}
-    <section style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://collections.newberry.org/IIIF3/Image/{tile.image}/square/,160/0/default.jpg;">
-            {tile.text}
-    </section>
-        {/if}
-</a>
+</div>
 
 <style>
-    .inactive section {
+    .inactive a {
         opacity: 0.01;
         height: 1px;
         max-height: 1px;
@@ -38,7 +39,7 @@
     .active.card {
         height: 30vh;
     }
-    .active section {
+    .active a {
         max-height: none;
         flex: 1;
         display: flex;
@@ -51,12 +52,12 @@
         font-size:  25px;
         padding: 16px;
         text-align: center;
+    text-decoration: none;
     }
     .card {
-    text-decoration: none;
     z-index: 9999;
         position: fixed;
-        bottom: 0;
+        top: 75px;
         width: 20vw;
         display: flex;
         flex-direction: column;
