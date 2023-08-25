@@ -2,77 +2,58 @@
     import {page} from '$app/stores'
     import {base} from '$app/paths'
     import {slugify} from '$lib'
-    export let tile, activeValue, idx
+    export let tile, idx
     $: lang = $page.params.lang
     $: countrykey  = 'country' +  ( lang || 'en' )
-    function handleTap (int){
-        activeValue = activeValue == int ? 99 : int
-    }
-    function handleKeyup(e, int){
-        if ( ['Space', 'Enter'].includes(e.key)  ){
-            activeValue = activeValue == int ? 99 : int
-        }
-    }
-    $: linkUrl =`${ lang ? '/' + lang : ''}/${ slugify(tile.countryen)}` 
-    
-    $: active = activeValue === idx
+    $: slug = slugify(tile.countryen)
+    $: linkUrl =`${ lang ? '/' + lang : ''}/${ slug }` 
+
     const imgUrl = tile.imagexy ? tile.imagexy + '/max' : 'full/,300' 
 </script>
-<div  class="card {active ? 'active' : 'inactive'}" style="left: {idx * 20}vw; right: {idx * 20 + 20}vw;">
-        <button class="header" style=" background-color: #{tile.color};" on:click={() => handleTap(idx)} on:keyup={() => handleKeyup(idx)}>
-            {tile[countrykey]}
-    </button>
-        {#if active}
-        <a class="card-content" href="{base}{linkUrl}" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://collections.newberry.org/IIIF3/Image/{tile.image}/{imgUrl}/0/default.jpg;">
-            {tile.text}
-    </a>
-        {/if}
-</div>
+<a  class="card card-{idx}" >
+    <p class="card-text" style=" background-color: #{tile.color};" >
+        {tile[countrykey]}
+    </p>
+        <img src="{base}/{slug}.jpg" alt="" class="card-image" />
+    <p class="card-text" style=" background-color: #{tile.color};" >
+        {tile.text}
+    </p>
+</a>
 
 <style>
-    .inactive a {
-        opacity: 0.01;
-        height: 1px;
-        max-height: 1px;
-        color: transparent;
-
-    }
-    .inactive.card {
-        height: 45px;
-    }
-    .active.card {
-        height: 30vh;
-    }
-    .active .card-content {
-        max-height: none;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: rgb(var(--bg-color-2));
-        background-size: cover;
-        background-position: center; 
-        font-size:  25px;
-        padding: 16px;
-        text-align: center;
-        text-decoration: none;
-    }
-    .card {
-        position: fixed;
-        bottom: 0;
-        width: 20vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: stretch;
-        transition: 100ms;
-    }
-    .card .header {
-        width: 100%;
-        border: none;
-        font-size: 25px;
-        padding: 5px;
-        text-align: center;
-    }
-    </style>
+.card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0;
+    height: 30vh;
+    transition: 100ms;
+}
+.card-image {
+    /* overflow: hidden; */
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.card-text {
+    flex-basis: 45px;
+    height: 25px;
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+}
+.card-0 { grid-area: 1 / 1 / 2 / 2; }
+.card-1 { grid-area: 1 / 2 / 2 / 3; }
+.card-2 { grid-area: 1 / 3 / 2 / 4; }
+.card-3 { grid-area: 1 / 4 / 2 / 5; }
+.card-4 { grid-area: 1 / 5 / 2 / 6; } 
+</style>
