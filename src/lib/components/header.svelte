@@ -2,14 +2,28 @@
 	import { page } from '$app/stores';
     import {base } from '$app/paths'
 	export let content;
+    let titleLeft = true
+    // titleLeft = false
+
 </script>
 
 <header>
 	<div class="header-left">
 		<a href="https://www.newberry.org/" class="center nolines" target="_blank">
-			<img src="{base}/NewberryLogo.png" height="64" width="317" alt={content.logoalt} />
-		</a>
-	</div>
+			<img src="{base}/NLogo.png" height="64" width="64" alt={content.logoalt} />
+        </a>
+        <div class="left-text">
+            {#if titleLeft}
+            <h1 class="mini-h1">{content.title}: {content.subtitle}</h1>
+            {/if}
+            <div class="header-hero">
+                <p class="hero-header">{content.hero.header}</p>
+                <p class="hero-subheader">{content.hero.subtitle}</p>
+
+            </div>
+
+        </div>
+    </div>
 	<div class="header-right">
 		<div class="change-lang">
             <a href="{base}/es" class={$page.params.lang === 'es' ? 'active' : ''}>
@@ -19,12 +33,35 @@
 				{content.en}
 			</a>
 		</div>
+        {#if !titleLeft}
 		<h1>{content.title}</h1>
 		<h2>{content.subtitle}</h2>
+        {/if}
 	</div>
 </header>
 
 <style>
+    .left-text {
+        max-height: 75px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-inline: 32px;
+    }
+    .mini-h1, .mini-h2, .hero-header, .hero-subheader {
+        margin: 0;
+        padding: 0;
+    }
+    .mini-h1, .mini-h2 , .hero-subheader{
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+    .hero-header {
+        font-weight: 900;
+        font-size: 32px;
+        line-height: 32px;
+    }
 	header {
 		position: fixed;
 		top: 0;

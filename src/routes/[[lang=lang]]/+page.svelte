@@ -7,13 +7,6 @@
     import Square from '$comps/squares.svelte';
     $: lang = $page.params.lang || 'en';
     $: content = lang in allContent ? allContent[lang] : allContent.en;
-    let activeValue = 99
-
-    function handleBodyClick(event){
-        if (!['A', 'BUTTON', 'circle'].includes( event.target.nodeName ) ){
-            activeValue = 99
-        }
-    }
 </script>
 
 <svelte:head>
@@ -23,55 +16,42 @@
 <Header {content} />
     
 <div class="content">
-    <div class="content-text">
-        <h3>{content.hero.header}</h3>
-        <p>{content.hero.subtitle}</p>
+    <div class="circles">
+        {#each allContent.tiles as circe, idx}
+            <Circle  {circe} {idx} />
+        {/each}
     </div>
     <div class="tiles">
         {#each allContent.tiles as tile, idx}
-            <Square {tile} bind:activeValue  {idx} />;
+            <Square {tile}  {idx} />
         {/each}
     </div>
-{#each allContent.tiles as circe, idx}
-    <Circle bind:activeValue {circe} {idx} />
-{/each}
 </div>
 <style>
     .content {
-        position: fixed;
-        /* pointer-events: none; */
-        top: 75px;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(90deg, #000, transparent 94%),
-            url('https://collections.newberry.org/IIIF3/Image/2KXJ8ZSFBTPJ9/350,250,1450,1050/max/0/default.jpg');
-        background-position: bottom left;
-        background-size: 100vw auto;
+        position: relative;
+        top:75px;
+        height: calc(100vh - 75px);
+        max-height: calc(100vh - 75px);
         /* background-repeat: no-repeat; */
-
         /* margin-top: 75px; */
-        padding: 2vw;
         display: flex;
         flex-direction: column;
     }
-    .content-text {
-        width: 80%;
+    .circles {
+        flex: 1;
+        background: url('https://collections.newberry.org/IIIF3/Image/2KXJ8ZSFBTPJ9/350,250,1450,1050/max/0/default.jpg');
+        background-position: bottom left;
+        background-size: 100vw auto;
+
     }
-    .content-text h3,
-    .content-text p {
-        margin-bottom: 0;
-        color: rgb(var(--bg-color-2));
-    }
-    .content-text h3 {
-        font-family: "flecha";
-        font-size: 4.5rem;
-    }
-    .content-text p {
-        font-family: styrene;
-        font-size: 20px;
-        line-height: 20px;
-        /* text-transform: uppercase; */
+    .tiles {
+        flex-basis: 30vh;
+        height: 30vh;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px; 
     }
 </style>	
