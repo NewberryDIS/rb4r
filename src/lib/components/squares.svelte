@@ -3,26 +3,27 @@
     import {base} from '$app/paths'
     import {slugify} from '$lib'
     export let tile, activeValue, idx
-    $: countrykey  = 'country' +  ( $page.params.lang === 'es' ? 'es' : 'en' )
+    $: lang = $page.params.lang
+    $: countrykey  = 'country' +  ( lang || 'en' )
     function handleTap (int){
         activeValue = activeValue == int ? 99 : int
     }
     function handleKeyup(e, int){
-        if ( e.key ==='Enter' || e.key === 'Space'  ){
+        if ( ['Space', 'Enter'].includes(e.key)  ){
             activeValue = activeValue == int ? 99 : int
         }
     }
-    $: linkUrl =`/${$page.params.lang.replaceAll('/','') || 'en'}/storymap/${ slugify(tile.countryen)}` 
+    $: linkUrl =`${ lang ? '/' + lang : ''}/${ slugify(tile.countryen)}` 
     
     $: active = activeValue === idx
     const imgUrl = tile.imagexy ? tile.imagexy + '/max' : 'full/,300' 
 </script>
-<div  class="card {active ? "active" : "inactive"}" style="left: {idx * 20}vw; right: {idx * 20 + 20}vw;">
+<div  class="card {active ? 'active' : 'inactive'}" style="left: {idx * 20}vw; right: {idx * 20 + 20}vw;">
         <button class="header" style=" background-color: #{tile.color};" on:click={() => handleTap(idx)} on:keyup={() => handleKeyup(idx)}>
             {tile[countrykey]}
     </button>
         {#if active}
-    <a class="card-content" href="{base}{linkUrl}" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://collections.newberry.org/IIIF3/Image/{tile.image}/{imgUrl}/0/default.jpg;">
+        <a class="card-content" href="{base}{linkUrl}" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://collections.newberry.org/IIIF3/Image/{tile.image}/{imgUrl}/0/default.jpg;">
             {tile.text}
     </a>
         {/if}
