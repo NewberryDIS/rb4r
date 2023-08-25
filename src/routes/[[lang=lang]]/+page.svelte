@@ -5,22 +5,23 @@
     import Header from '$comps/header.svelte';
     import Circle from '$comps/circles.svelte';
     import Square from '$comps/squares.svelte';
-    import Tile from '$comps/tile.svelte';
     $: lang = $page.params.lang || 'en';
     $: content = lang in allContent ? allContent[lang] : allContent.en;
     let activeValue = 99
-    // $: console.log($page.params.lang ? 'pageparams' : 'asdf')
-    $: console.log("lang in all content", lang in allContent)
+
     function handleBodyClick(event){
         if (!['A', 'BUTTON', 'circle'].includes( event.target.nodeName ) ){
             activeValue = 99
         }
     }
-    // $: console.log(activeValue)
 </script>
+
+<svelte:head>
+    <title>{content.title}</title>
+</svelte:head>
 <svelte:body on:click={(e) => handleBodyClick(e)} />
 <Header {content} />
-<!-- <Map bind:activeValue /> -->
+    
 <div class="content">
     <div class="content-text">
         <h3>{content.hero.header}</h3>

@@ -45,13 +45,13 @@ html {
   --bg-color-2: var(--rb4r-green);
   --bg-color-1: var(--flame);
   --bg-1: linear-gradient(
-    to right,
+    120deg,
     rgb(var(--bg-color-1)) 0vw,
-    50vw,
-    rgb(var(--bg-color-2)) 50vw 100vw
+    40vw,
+    rgb(var(--bg-color-2)) 40vw 100vw
   );
   --bg-2: linear-gradient(
-    60deg,
+    120deg,
     rgb(var(--bg-color-1)) 0vmin,
     40vmin,
     rgb(var(--bg-color-2)) 40vmin 100vw

@@ -1,28 +1,35 @@
 <script>
-    import {page}  from '$app/stores'
     import {base} from '$app/paths'
+    import {page}  from '$app/stores'
     import {slugify } from '$lib'
     import '$lib/main.css';
     import allContent from '$lib/content.json';
-    const storymapId = $page.params.storymap
-    const lang =  $page.params.lang
+    const storymapId = $page.params.id
+    const lang =  $page.params.lang || 'en'
     const content = allContent[lang]
-    const storymapContent = allContent.tiles.filter(f => slugify(f.countryen) === $page.params.storymap).pop()
+//     $: console.log('lang',lang)
+//     console.log(allContent.tiles.filter(c => storymapId === slugify(c.countryen))[0])
+//     $: console.log('allContent',allContent)
+//     $: console.log('allco.tiles',allContent.tiles)
+    const storymapContent = allContent.tiles.filter(f => slugify(f.countryen) === storymapId)[0]
+// $: console.log('strymapcontent', storymapContent)
     const storymapurl = storymapContent.storymap
     // slugifier(storymap)
-    const imgUrl = storymapContent.imagexy ? storymapContent.imagexy + '/max' : 'full/,300' 
-    </script>
+    const imgUrl = storymapContent.imagexy ? storymapContent.imagexy + '/max' : 'full/,300'
+</script>
+<svelte:head>
+    <title>{content.title}</title>
+</svelte:head>
 <main style="background-image: linear-gradient( rgba(var(--midnight), 0.7), rgba(var(--midnight), 0.7) ), url('https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg')">
     <div class="left" >
         <div class="logo">
-
             <a href="https://www.newberry.org/" class="center nolines" target="_blank">
                 <img src="{base}/NewberryLogo_granite.png" height="64" width="317" alt={content.logoalt} />
             </a>
         </div>
-        <h1>Race Before Race</h1>
+        <h1>{content.title}</h1>
         <!-- <img class="storymap-img" src="https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg" alt=""> -->
-        <a class="home-btn" href="{base}/{$page.params.lang.replaceAll('/','')}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose Another Map": "Choose Another Map but in Spanish"}</a>
+        <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose Another Map": "Elige Otro Mapa"}</a>
     </div>
     <div class="right">
         <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe>
