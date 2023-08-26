@@ -13,9 +13,9 @@
     <title>{content.title}</title>
 </svelte:head>
 <svelte:body on:click={(e) => handleBodyClick(e)} />
-<Header {content} />
     
-<div class="content">
+<main class="content">
+<Header {content} />
     <div class="circles">
         {#each allContent.tiles as circe, idx}
             <Circle  {circe} {idx} />
@@ -26,13 +26,18 @@
             <Square {tile}  {idx} />
         {/each}
     </div>
-</div>
+</main>
 <style>
     .content {
-        position: relative;
-        top:75px;
-        height: calc(100vh - 75px);
-        max-height: calc(100vh - 75px);
+        /* position: relative; */
+        height:100vh; 
+        /* max-height: calc(100vh - 75px); */
+        top:0;
+        /* position: fixed; */
+        bottom: 0;
+        left: 0;
+        right: 0;
+
         /* background-repeat: no-repeat; */
         /* margin-top: 75px; */
         display: flex;
@@ -46,12 +51,16 @@
 
     }
     .tiles {
-        flex-basis: 30vh;
-        height: 30vh;
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: 1fr;
-        grid-column-gap: 0px;
-        grid-row-gap: 0px; 
+        /* flex-basis: 350px; */
+        height: 350px;
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+        flex-wrap: no-wrap;
+        /* display: grid; */
+        /* grid-template-columns: repeat(5, 1fr); */
+        /* grid-template-rows: 1fr; */
+        /* grid-column-gap: 0px; */
+        /* grid-row-gap: 0px;  */
     }
 </style>	
