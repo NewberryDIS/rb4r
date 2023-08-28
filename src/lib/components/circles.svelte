@@ -4,7 +4,8 @@
     const textPos = parseInt(circe.y) + 12
 </script>
 <div class="circle-wrap {cardHover === idx ? 'card-hover' : ''}">
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1452 1056">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1452 1006">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1452 1056"> -->
         <circle r="25" cx={circe.x} cy={circe.y} fill="#{circe.color}" role="navigation" aria-label="show navigation" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} />
         <text x={circe.x} y={textPos} text-anchor="middle" stroke="rgb(var(--midnight))" stroke-width="2px" font-size="37px">{idx + 1}</text>
     </svg>
