@@ -20,8 +20,9 @@
 <svelte:head>
     <title>{content.title}</title>
 </svelte:head>
-<main style="background-image: linear-gradient( rgba(var(--midnight), 0.7), rgba(var(--midnight), 0.7) ), url('{base}/{storymapId}.jpg');">
-    <div class="left"  >
+<main >
+    <div class="left" style="background-image: linear-gradient( rgba(var(--midnight), 0.7), rgba(var(--midnight), 0.7) ), url('{base}/{storymapId}.jpg');" >
+        <div class="bg" ></div>
         <div class="logo">
             <a href="https://www.newberry.org/" class="center nolines" target="_blank">
                 <img src="{base}/NLogo_granite.png" height="50" width="50" alt={content.logoalt} />
@@ -31,12 +32,12 @@
                 {content.title}
             </a>
         </div>
-        <h1>{storymapContent.text}</h1>
+        <h1 class="storymap-title">{storymapContent.text}</h1>
         <!-- <img class="storymap-img" src="https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg" alt=""> -->
         <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another resource": "Elige Otro Mapa"}</a>
     </div>
     <div class="right">
-        <!-- <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe> -->
+        <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe>
     </div>
 </main>
 <style>
@@ -70,15 +71,20 @@
         right: 0;
         top: 0;
         bottom: 0;
+        /* z-index: 1; */
 
-        /* background-position: center; */
-        /* background-size: 400px 100%; */
-        /* background-repeat: no-repeat; */
+        backdrop-filter: blur(5px) saturate(3) !important;
+    }
+    .logo, .storymap-title, .home-btn {
+        z-index: 999;
     }
     .left {
-
+        /* z-index: 40; */
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
         padding: 10px;
-        backdrop-filter: blur(6px) saturate(1) !important;
         flex-basis: 300px;
         height: 100vh;
         gap : 10vh;

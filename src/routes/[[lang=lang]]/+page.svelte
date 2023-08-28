@@ -46,7 +46,8 @@
     }
     .circles {
         flex: 1;
-        background: url('https://collections.newberry.org/IIIF3/Image/2KXJ8ZSFBTPJ9/350,250,1450,1050/max/0/default.jpg');
+        /* background: url('https://collections.newberry.org/IIIF3/Image/2KXJ8ZSFBTPJ9/350,250,1450,1050/max/0/default.jpg'); */
+        background: url('map-bg.jpg');
         background-position: bottom left;
         background-size: 100vw auto;
 
