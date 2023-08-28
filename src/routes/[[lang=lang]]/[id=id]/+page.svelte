@@ -7,12 +7,12 @@
     const storymapId = $page.params.id
     const lang =  $page.params.lang || 'en'
     const content = allContent[lang]
-//     $: console.log('lang',lang)
-//     console.log(allContent.tiles.filter(c => storymapId === slugify(c.countryen))[0])
-//     $: console.log('allContent',allContent)
-//     $: console.log('allco.tiles',allContent.tiles)
+    //     $: console.log('lang',lang)
+    //     console.log(allContent.tiles.filter(c => storymapId === slugify(c.countryen))[0])
+    //     $: console.log('allContent',allContent)
+    //     $: console.log('allco.tiles',allContent.tiles)
     const storymapContent = allContent.tiles.filter(f => slugify(f.countryen) === storymapId)[0]
-// $: console.log('strymapcontent', storymapContent)
+    // $: console.log('strymapcontent', storymapContent)
     const storymapurl = storymapContent.storymap
     // slugifier(storymap)
     const imgUrl = storymapContent.imagexy ? storymapContent.imagexy + '/max' : 'full/,300'
@@ -20,23 +20,37 @@
 <svelte:head>
     <title>{content.title}</title>
 </svelte:head>
-<main style="background-image: linear-gradient( rgba(var(--midnight), 0.7), rgba(var(--midnight), 0.7) ), url('https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg')">
-    <div class="left" >
+<main style="background-image: linear-gradient( rgba(var(--midnight), 0.7), rgba(var(--midnight), 0.7) ), url('{base}/{storymapId}.jpg');">
+    <div class="left"  >
         <div class="logo">
             <a href="https://www.newberry.org/" class="center nolines" target="_blank">
-                <img src="{base}/NewberryLogo_granite.png" height="64" width="317" alt={content.logoalt} />
+                <img src="{base}/NLogo_granite.png" height="50" width="50" alt={content.logoalt} />
+
+            </a>
+            <a class="home-link" href="{base}/{$page.params.lang || ''}" >
+                {content.title}
             </a>
         </div>
-        <h1>{content.title}</h1>
+        <h1>{storymapContent.text}</h1>
         <!-- <img class="storymap-img" src="https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg" alt=""> -->
-        <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose Another Map": "Elige Otro Mapa"}</a>
+        <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another resource": "Elige Otro Mapa"}</a>
     </div>
     <div class="right">
-        <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe>
+        <!-- <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe> -->
     </div>
 </main>
 <style>
+    .home-link {
+        font-size: 24px;
+
+        color: rgb(var(--bg-color-2));
+        text-decoration: none;
+    }
     main {
+        /* background-position: 75% 50%; */
+        /* background-position: center; */
+        /* background-size: 400px 100%; */
+        /* background-repeat: no-repeat; */
         /* background: rgb(var(--midnight)); */
         /* color: rgb(var(--granite)); */
         height: 100vh;
@@ -46,21 +60,39 @@
         /* justify-content: ; */
         align-items: stretch;
     }
+    a:hover {
+        filter: brightness(1.25);
+        transition: 200ms ease-in-out;
+    }
+    .bg {
+        position: absolute;
+        left:0;
+        right: 0;
+        top: 0;
+        bottom: 0;
 
+        /* background-position: center; */
+        /* background-size: 400px 100%; */
+        /* background-repeat: no-repeat; */
+    }
     .left {
-        backdrop-filter: blur(10px) saturate(1) !important;
-        flex-basis: 400px;
-        height: 100%;
+
+        padding: 10px;
+        backdrop-filter: blur(6px) saturate(1) !important;
+        flex-basis: 300px;
+        height: 100vh;
         gap : 10vh;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
     }
     .logo {
-        height: 75px;
+        height: 50px;
+        width: 100%;
+        min-width: 0;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
 
     }
@@ -68,9 +100,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 10px;
+        line-height: 22px;
     }
     .logo img {
-        height: 64px;
+        height: 50px;
     }
     .storymap-img {
         width: 80%; 
@@ -81,16 +115,16 @@
     }
     h1 {
         width: 90%;
-        color: rgb(var(--granite));
-        font-size: 10vh;
+        color: rgb(var(--bg-color-2));
+        font-size: 6vh;
         margin: 0 auto;
-  font-family: "flecha";
+        font-family: "flecha";
     }
     .home-btn {
         width: 80%;
         margin: 0 auto 64px auto;
-        padding: 32px;
-        font-size: 24px;
+        padding: 24px;
+        font-size: 20px;
         font-family: 'styrene';
         font-weight: 900;
         color: inherit;
@@ -124,7 +158,7 @@
     }
     .right {
         flex: 1;
-
+        background: rgb(var(--bg-color-2));
     }
     .right iframe {
         width: 100%;

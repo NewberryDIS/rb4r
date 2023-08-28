@@ -2,7 +2,7 @@
     import {page} from '$app/stores'
     import {base} from '$app/paths'
     import {slugify} from '$lib'
-    export let tile, idx
+    export let cardHover, tile, idx
     $: lang = $page.params.lang
     $: countrykey  = 'country' +  ( lang || 'en' )
     $: slug = slugify(tile.countryen)
@@ -10,12 +10,14 @@
 
     const imgUrl = tile.imagexy ? tile.imagexy + '/max' : 'full/,300' 
 </script>
-<a  class="card card-{idx}" >
+<a href="{base}/{lang ? lang + '/' : ''  }{slug}" class="card card-{idx} {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} >
     <p class="card-text" style=" background-color: #{tile.color};" >
         {tile[countrykey]}
     </p>
     <!-- <div class="card-image" style="background-image: url('{base}/{slug}.jpg')"><span></span></div> -->
-        <img src="{base}/{slug}.jpg" alt="" class="card-image" />
+    <div class="img-wrapper">
+    <img src="{base}/{slug}.jpg" alt="" class="card-image" />
+    </div>
     <p class="card-text" style=" background-color: #{tile.color};" >
         <span>
             {tile.text}
@@ -36,17 +38,28 @@
     transition: 100ms;
     min-width: 0;
     overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    transition: 200ms;
 }
+    .card-hover {
+        filter: brightness(1.25);
+    }
+    .img-wrapper {
+        width: 100%;
+        flex: 1;
+        height: 260px;
+    }
 .card-image {
-    width: auto;
-    flex: 1;
+    width: 100%;
+    /* flex: 1; */
     height: 260px;
-    background-position: center;
-    background-size: cover;
+    /* background-position: center; */
+    /* background-size: cover; */
     /* height: 100%; */
     /* max-height: 100%; */
     /* width: auto; */
-    /* object-fit: cover; */
+    object-fit: cover;
     /* object-position: center; */
 }
 .card-text {

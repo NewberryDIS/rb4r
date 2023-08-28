@@ -7,6 +7,7 @@
     import Square from '$comps/squares.svelte';
     $: lang = $page.params.lang || 'en';
     $: content = lang in allContent ? allContent[lang] : allContent.en;
+    let cardHover = 99;
 </script>
 
 <svelte:head>
@@ -18,12 +19,12 @@
 <Header {content} />
     <div class="circles">
         {#each allContent.tiles as circe, idx}
-            <Circle  {circe} {idx} />
+            <Circle bind:cardHover {circe} {idx} />
         {/each}
     </div>
     <div class="tiles">
         {#each allContent.tiles as tile, idx}
-            <Square {tile}  {idx} />
+            <Square bind:cardHover {tile} {idx} />
         {/each}
     </div>
 </main>
@@ -62,5 +63,6 @@
         /* grid-template-rows: 1fr; */
         /* grid-column-gap: 0px; */
         /* grid-row-gap: 0px;  */
+            background: rgb(var(--bg-color-2));
     }
 </style>	
