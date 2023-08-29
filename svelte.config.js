@@ -7,6 +7,7 @@ const config = {
       entries: [
         "/",
         "/credits",
+        "/backgrounds",
         "/es",
         "/france",
         "/germany",

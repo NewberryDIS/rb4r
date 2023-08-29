@@ -3,14 +3,14 @@
     import {base} from '$app/paths'
     import {slugify} from '$lib'
     export let cardHover, tile, idx
-    $: lang = $page.params.lang
-    $: countrykey  = 'country' +  ( lang || 'en' )
+    $: lang = $page.params.lang || 'en'
+    $: countrykey  = 'country' +  lang 
     $: slug = slugify(tile.countryen)
     $: linkUrl =`${ lang ? '/' + lang : ''}/${ slug }` 
 
     const imgUrl = tile.imagexy ? tile.imagexy + '/max' : 'full/,300' 
 </script>
-<a href="{base}/{lang ? lang + '/' : ''  }{slug}" class="card card-{idx} {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} >
+<a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}" class="card card-{idx} {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} >
     <p class="card-text" style=" background-color: #{tile.color};" >
         {tile[countrykey]}
     </p>
@@ -18,14 +18,17 @@
     <div class="img-wrapper">
     <img src="{base}/{slug}.jpg" alt="" class="card-image" />
     </div>
-    <p class="card-text" style=" background-color: #{tile.color};" >
+    <p class="card-text btm" style=" background-color: #{tile.color};" >
         <span>
-            {tile.text}
+            {tile[lang]}
         </span>
     </p>
 </a>
 
 <style>
+    .btm {
+        line-height: 1em;
+    }
 .card {
     flex:1;
     margin: 0;
@@ -75,14 +78,15 @@
     /* text-align: center; */
     padding-inline : 8px;
     margin: 0;
+        text-align: center;
 }
-.card-text span {
-    white-space: nowrap;
-    overflow: hidden;
-display: inline-block; /* for inline elements e.g. span, strong, em etc */
-text-overflow: ellipsis;
-width: calc(80%); /* The trick is here! */
-}
+/* .card-text span { */
+/*     white-space: nowrap; */
+/*     overflow: hidden; */
+/* text-overflow: ellipsis; */
+/**/
+/*     } */
+/**/
 /* .card-0 { grid-area: 1 / 1 / 2 / 2; } */
 /* .card-1 { grid-area: 1 / 2 / 2 / 3; } */
 /* .card-2 { grid-area: 1 / 3 / 2 / 4; } */

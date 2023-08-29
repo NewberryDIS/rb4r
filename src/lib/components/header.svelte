@@ -13,12 +13,14 @@
             <img src="{base}/NLogo.png" height="64" width="64" alt={content.logoalt} />
         </a>
         <div class="left-text">
-            {#if titleLeft}
-                <h1 class="mini-h1 truncate">{content.title}: {content.subtitle}</h1>
-            {/if}
+            <!-- {#if titleLeft} -->
+            <!-- {/if} -->
             <div   class="truncate header-hero">
-                <p class="truncate hero-header">{content.hero.header}</p>
-                <p class="truncate hero-subheader">{content.hero.subtitle}</p>
+                <h1 class="mini-h1 truncate">{content.title}: {content.subtitle}</h1>
+                <br />
+                <span class="truncate hero-header">{content.hero.header}</span>
+                <br />
+                <span class="truncate hero-subheader">{@html content.hero.subtitle}</span>
 
             </div>
 
@@ -48,7 +50,8 @@ credits
     .truncate {
 
         white-space: nowrap;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: visible;
         text-overflow: ellipsis;
     }
     .left-text {
@@ -64,13 +67,14 @@ credits
         padding: 0;
     }
     .mini-h1, .mini-h2 , .hero-subheader{
+        display: inline;
         font-size: 1rem;
         line-height: 1rem;
     }
     .hero-header {
         font-weight: 900;
         font-size: 32px;
-        line-height: 32px;
+        line-height: 33px;
     }
     header {
         /* position: fixed; */
