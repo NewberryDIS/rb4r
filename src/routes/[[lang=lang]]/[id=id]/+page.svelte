@@ -32,7 +32,7 @@
                 {content.title}
             </a>
         </div>
-        <h1 class="storymap-title">{storymapContent.text}</h1>
+        <h1 class="storymap-title">{storymapContent[lang]}</h1>
         <!-- <img class="storymap-img" src="https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg" alt=""> -->
         <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another resource": "Elige Otro Mapa"}</a>
     </div>

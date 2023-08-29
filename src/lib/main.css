@@ -16,6 +16,7 @@ body * {
   box-sizing: border-box;
 }
 html {
+  --nl-box-shadow: 0 10px 16px rgba(0, 0, 0, 0.1);
   --rb4r-green: 237, 231, 206;
   --flame: 241, 97, 81;
   --park-green: 32, 84, 62;
