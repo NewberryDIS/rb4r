@@ -2,6 +2,7 @@
     import '$lib/main.css';
     import allContent from '$lib/content.json';
     import { page } from '$app/stores';
+    import { base } from '$app/paths';
     import Header from '$comps/header.svelte';
     import Circle from '$comps/circles.svelte';
     import Square from '$comps/squares.svelte';
@@ -17,7 +18,7 @@
     
 <main class="content">
 <Header {content} />
-    <div class="circles">
+    <div class="circles" style="background-image: url('{base}/map-bg.jpg');">
         {#each allContent.tiles as circe, idx}
             <Circle bind:cardHover {circe} {idx} />
         {/each}
@@ -47,7 +48,7 @@
     .circles {
         flex: 1;
         /* background: url('https://collections.newberry.org/IIIF3/Image/2KXJ8ZSFBTPJ9/350,250,1450,1050/max/0/default.jpg'); */
-        background: url('map-bg.jpg');
+        /* background: url('map-bg.jpg'); */
         background-position: bottom left;
         background-size: 100vw auto;
 

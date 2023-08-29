@@ -32,6 +32,10 @@
             <a href="{base}/" class={$page.params.lang !== 'es' ? 'active' : ''}>
                 {content.en}
             </a>
+            <a href="{base}/credits" >
+                <!-- {content.credits} -->
+credits
+            </a>
         </div>
         {#if !titleLeft}
             <h1 class="truncate">{content.title}</h1>
@@ -133,11 +137,16 @@
         text-decoration: none;
         background: none;
         padding: 2px;
+        transition: 150ms;
     }
     .change-lang a.active {
         border: 1px solid rgb(var(--midnight));
     }
     .change-lang a:not(.active) {
         border: 1px solid transparent;
+
+    }
+    .change-lang a:not(.active):hover {
+        border: 1px solid rgba(var(--fg-color-1), 0.5);
     }
 </style>
