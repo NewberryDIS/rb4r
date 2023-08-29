@@ -6,6 +6,7 @@ const config = {
     prerender: {
       entries: [
         "/",
+        "/credits",
         "/es",
         "/france",
         "/germany",
