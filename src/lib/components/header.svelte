@@ -34,7 +34,7 @@
             <a href="{base}/" class={$page.params.lang !== 'es' ? 'active' : ''}>
                 {content.en}
             </a>
-            <a href="{base}/credits" >
+            <a href="{base}/{$page.params.lang ? 'es/' : ''}credits" >
                 <!-- {content.credits} -->
 credits
             </a>
