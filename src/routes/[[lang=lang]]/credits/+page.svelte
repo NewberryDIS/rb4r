@@ -4,6 +4,7 @@
     $: lang = $page.params.lang || 'en'
     import '$lib/main.css'
     import content from '$lib/content.json'
+    import Gallery from '$comps/gallery.svelte'
 
     // $: lang = $page.params.lang
     const bgs = [  
@@ -42,12 +43,13 @@
     function bgswap () {
         bgc = !bgc
     }
+    let galOpen = false
 </script>
 
 <div class="bg-1-image" style="background-image: url('{base}/maps/{bg}')"></div>
 <div class="bg-2-wedge" ></div>
 <main class={bgc ? 'bgl' : 'bgd'}>
-    <section class="top-level-wrapper">
+    <section class="top-level-wrapper main">
         <div class="link-block">
             <a class="arrow-link" href="{base}{lang === 'es' ? '/es' : '/'}"><img width="50" height="50"src="{base}/arrow.png" alt=""></a>
             <p><a href="{base}/credits" class="lang-link {lang !== 'es' ? 'active' : ''}">en</a><a href="{base}/es/credits" class="lang-link {lang === 'es' ? 'active' : ''}">es</a></p>
@@ -74,7 +76,7 @@
                     <dd>Sarah Boyd Alvarez</dd>
 
                     <dt>{content[lang].credits.dl[4]}</dt>
-                    <dd>Catherine Gass, Nicolas White, Jennifer Wolfe</dd>
+                    <dd>Catherine Gass, <span class="myname" on:click={() => galOpen = !galOpen}>Nicolas White</span>, Jennifer Wolfe</dd>
 
                     <dt>{content[lang].credits.dl[5]}</dt>
                     <dd>M. N. Kennedy, Andrea Villasenor</dd>
@@ -94,8 +96,24 @@
             </section>
         </article>
     </section>
+    {#if galOpen}
+        <section class="gallery top-level-wrapper {galOpen ? 'open' : ''}" >
+            <Gallery />
+        </section>
+    {/if}
 </main>
 <style>
+    .myname {
+
+        cursor: help;
+        transition: 150ms;
+    }
+    .myname:hover {
+        color: #FF00FF;
+    }
+    .gallery {
+        width: 900px;
+    }
     .link-block {
         position: sticky;
         top: 77%;
@@ -139,14 +157,13 @@
         width: 100vw;
         height: 100vh;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
+        /* flex-direction: column; */
+        justify-content: space-between;
+        align-items: center;
     }
     .top-level-wrapper {
         position: relative;
         height: max(650px, 80vh );
-        width: clamp(500px, 45vw, 750px);
         overflow-y: auto;
         border-radius: 10px;
         padding: 16px;
@@ -156,6 +173,9 @@
         align-items: flex-start;
         min-height: 0;
         min-width: 0;
+    }
+    .top-level-wrapper.main {
+        width: clamp(500px, 45vw, 750px);
     }
     section {
         /* width: max(550px, 30vw ); */

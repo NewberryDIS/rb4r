@@ -66,7 +66,10 @@
       "es": "El espejo de la salvación humana",
       "image": "2KXJ8ZV91HAP",
       "imagexy": "210,140,300,300",
-      "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-eng/index.html"
+      "storymap": {
+        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-eng/index.html",
+        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-spanish/index.html"
+      }
     },
     {
       "countryen": "Germany",
@@ -78,7 +81,10 @@
       "es": "Los cuatro libros de la proporción humana",
       "image": "2KXJ8ZSARPI17",
       "imagexy": "275,420,630,520",
-      "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-eng-1/index.html"
+      "storymap": {
+        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-eng-1/index.html",
+        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-spanish/index.html"
+      }
     },
     {
       "countryen": "Turkey",
@@ -90,7 +96,10 @@
       "es": "Historia de la India occidental",
       "image": "2KXJ8ZSFBTX3U",
       "imagexy": "870,1140,242,242",
-      "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-eng/index.html"
+      "storymap": {
+        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-eng/index.html",
+        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-spanish/index.html"
+      }
     },
     {
       "countryen": "Mexico",
@@ -102,7 +111,10 @@
       "es": "Mapa de territorios mexicanos",
       "image": "2KXJ8ZSAZL3FE",
       "imagexy": "480,675,420,420",
-      "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeing-race-b4-race-farmers-vs-covarrubias-map-2/index.html "
+      "storymap": {
+        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeing-race-b4-race-farmers-vs-covarrubias-map-2/index.html",
+        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeingrbr-covarrubias-spanish-storymap/index.html"
+      }
     },
     {
       "countryen": "England",
@@ -114,7 +126,10 @@
       "es": "Una maravilla de maravillas",
       "image": "2KXJ8ZSARPTCP",
       "imagexy": "230,640,680,680",
-      "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-wonders-eng/index.html "
+      "storymap": {
+        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-wonders-eng/index.html",
+        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-spanish/index.html"
+      }
     }
   ]
 }
