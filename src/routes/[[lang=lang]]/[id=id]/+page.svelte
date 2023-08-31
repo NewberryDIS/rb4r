@@ -36,7 +36,8 @@
         </div>
     </div>
     <div class="right">
-        <!-- <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe> -->
+        <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe>
+        <!-- {storymapurl} -->
     </div>
 </main>
 <style>
@@ -110,13 +111,6 @@
         }
         .logo img {
             height: 50px;
-        }
-        .storymap-img {
-            width: 80%; 
-            margin: auto;
-            border-radius: 10px;
-            border: 1px solid rgb(var(--granite));
-            box-shadow:  0 0 4px 4px rgba(var(--granite), 0.2);
         }
         h1 {
             width: 95%;
