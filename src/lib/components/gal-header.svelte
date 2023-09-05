@@ -3,9 +3,8 @@
     import {base } from '$app/paths'
     export let content, gallery = false;
     let titleLeft = true
-    import { width, height} from '$lib'
     // titleLeft = false
-    $: lang = $page.params.lang || 'en'
+
 </script>
 
 <header>
@@ -14,21 +13,30 @@
             <img src="{base}/NLogo.png" height="64" width="64" alt={content.logoalt} />
         </a>
         <div class="left-text">
-            <h1 class="maxi-h1 truncate">{content.title}</h1>
-            <br />
-            <span class="truncate hero-subheader">{content.subtitle}</span>
+            <!-- {#if titleLeft} -->
+            <!-- {/if} -->
+            <div   class="truncate header-hero">
+                <h1 class="mini-h1 truncate">{content.title}: {content.subtitle}</h1>
+                <br />
+                <span class="truncate hero-header">{content.hero.header}</span>
+                <br />
+                <span class="truncate hero-subheader">{@html content.hero.subtitle}</span>
+
+            </div>
+
         </div>
     </div>
     <div class="header-right">
         <div class="change-lang">
-            <a href="{base}/{gallery ? 'gallery/' : ''}es" class={lang === 'es' ? 'active' : ''}>
+            <a href="{base}/{gallery ? 'gallery/' : ''}es" class={$page.params.lang === 'es' ? 'active' : ''}>
                 {content.es}
             </a>
-            <a href="{base}/{gallery ? 'gallery/' : ''}" class={lang !== 'es' ? 'active' : ''}>
+            <a href="{base}/{gallery ? 'gallery/' : ''}" class={$page.params.lang !== 'es' ? 'active' : ''}>
                 {content.en}
             </a>
-            <a href="{base}/{gallery ? 'gallery/' : ''}{lang ? 'es/' : ''}credits" >
-                { lang === 'es' ? 'credits' : 'Credits' }
+            <a href="{base}/{gallery ? 'gallery/' : ''}{$page.params.lang ? 'es/' : ''}credits" >
+                <!-- {content.credits} -->
+credits
             </a>
         </div>
         {#if !titleLeft}
@@ -50,11 +58,11 @@
         max-height: 75px;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: flex-start;
         margin-inline: 32px;
     }
-    .maxi-h1, .maxi-h2, .hero-header, .hero-subheader {
+    .mini-h1, .mini-h2, .hero-header, .hero-subheader {
         margin: 0;
         padding: 0;
     }
@@ -63,18 +71,18 @@
         font-size: 1rem;
         line-height: 1rem;
     }
-    .maxi-h1 {
+    .hero-header {
         font-weight: 900;
         font-size: 32px;
         line-height: 33px;
     }
     header {
-        /* flex-basis: 75px; */
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        /* position: fixed; */
+        flex-basis: 75px;
         height: 75px;
+        /* top: 0; */
+        /* left: 0; */
+        /* right: 0; */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -110,7 +118,6 @@
         font-size: 20px;
     }
     .header-right {
-        background: rgb(var(--bg-color-1));
         height: 75px;
         display: flex;
         flex-direction: column;
@@ -119,15 +126,12 @@
     }
     .change-lang {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        gap: 1px;
-        margin: 1px 0;
+        margin: 0;
         z-index: 40;
     }
     .change-lang a {
-        font-size: 0.77rem;
         background: rgb(var(--bg-color-1));
         background: rgb(var(--fg-color-1));
         text-align: center;
