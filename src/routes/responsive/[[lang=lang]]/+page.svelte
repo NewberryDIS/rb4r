@@ -8,7 +8,8 @@
     import Square from '$comps/squares.svelte';
     import {height, width} from '$lib'
     $: lang = $page.params.lang || 'en';
-    $: content = lang in allContent ? allContent[lang] : allContent.en;
+    $: content =  allContent[lang] 
+    // $: content = lang in allContent ? allContent[lang] : allContent.en;
     let cardHover = 99;
     // $: top = 
 </script>

@@ -7,7 +7,7 @@
     "logoalt": "logo for the Newberry Library",
     "hero": {
       "header": "Explore the roots of racism from the Middle Ages to 1800",
-      "subtitle": "A companion to Seeing Race Before Race, a Newberry exhibition and an Arizona Center for Medieval and Renaissance Studies Press publication. <a href='' class='llines' target='_blank' >More information</a>",
+      "subtitle": "A companion to <em>Seeing Race Before Race</em>, a Newberry exhibition and an Arizona Center for Medieval and Renaissance Studies Press publication",
       "alt": "map of the world from a perspective that looks upside down from what people are accustomed to: North is down."
     },
     "credits": {
@@ -23,8 +23,8 @@
         "Gallery Preparators"
       ],
       "partners": "The Newberry gratefully acknowledges loans from the Adler Planetarium, the Art Institute of Chicago, and the Carl & Marilynn Thoma Foundation.",
-      "donors": "<em>Seeing Race Before Race</em> is generously supported by the Carl & Marilynn Thoma Foundation, the Samuel H. Kress Foundation, Pam and Doug Walter, and an anonymous donor",
-      "explan": "<em>Seeing Race Before Race</em> draws on the pathbreaking work of our partners in the RaceB4Race research collective. Founded in 2019, RaceB4Race centers the expertise, perspectives, and sociopolitical interests of scholars who are Black, Indigenous, and of color to demonstrate the value of premodern critical race studies and highlight the powerful histories of people of color in the classical, medieval, and early modern past"
+      "donors": "<em>Seeing Race Before Race</em> is generously supported by the Carl & Marilynn Thoma Foundation, the Samuel H. Kress Foundation, Pam and Doug Walter, and an anonymous donor.",
+      "explan": "<em>Seeing Race Before Race</em> draws on the pathbreaking work of our partners in the RaceB4Race research collective. Founded in 2019, RaceB4Race centers the expertise, perspectives, and sociopolitical interests of scholars who are Black, Indigenous, and of color to demonstrate the value of premodern critical race studies and highlight the powerful histories of people of color in the classical, medieval, and early modern past."
     }
   },
   "es": {
@@ -35,7 +35,7 @@
     "logoalt": "logotipo de la Biblioteca Newberry",
     "hero": {
       "header": "Explora las raíces del racismo desde la Edad Media hasta 1800",
-      "subtitle": "Un recurso complementario de <em>Visiones de la raza antes del siglo XVIII</em>, una exposición de la Newberry",
+      "subtitle": "Un recurso complementario de <em>Visiones de la raza antes del siglo XVIII</em>, una exposición de la Newberry y una publicación de Arizona Center for Medieval and Renaissance Studies Press",
       "alt": "mapa del mundo desde una perspectiva invertida a lo que la gente está acostumbrada: el Norte está abajo."
     },
     "credits": {
@@ -57,79 +57,89 @@
   },
   "tiles": [
     {
-      "countryen": "France",
-      "countryes": "Francia",
+      "en": {
+        "country": "Belgium",
+        "title": "The Mirror of Human Salvation",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-eng/index.html"
+      },
+      "es": {
+        "country": "Bélgica",
+        "title": "El espejo de la salvación humana",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-spanish/index.html"
+      },
       "color": "caa3b1",
       "x": "585",
       "y": "850",
-      "en": "The Mirror of Human Salvation",
-      "es": "El espejo de la salvación humana",
       "image": "2KXJ8ZV91HAP",
-      "imagexy": "210,140,300,300",
-      "storymap": {
-        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-eng/index.html",
-        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-spanish/index.html"
-      }
+      "imagexy": "210,140,300,300"
     },
     {
-      "countryen": "Germany",
-      "countryes": "Alemania",
+      "en": {
+        "country": "Germany",
+        "title": "The Four Books of Human Proportion",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-eng-1/index.html"
+      },
+      "es": {
+        "country": "Alemania",
+        "title": "Los cuatro libros de la proporción humana",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-spanish/index.html"
+      },
+      "color": "748099",
       "x": "537",
       "y": "867",
-      "color": "748099",
-      "en": "The Four Books of Human Proportion",
-      "es": "Los cuatro libros de la proporción humana",
       "image": "2KXJ8ZSARPI17",
-      "imagexy": "275,420,630,520",
-      "storymap": {
-        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-eng-1/index.html",
-        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-spanish/index.html"
-      }
+      "imagexy": "275,420,630,520"
     },
     {
-      "countryen": "Turkey",
-      "countryes": "Turquía",
+      "en": {
+        "country": "Turkey",
+        "title": "The History of the India to the West",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-eng/index.html"
+      },
+      "es": {
+        "country": "Turquía",
+        "title": "Historia de la India occidental",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-spanish/index.html"
+      },
+      "color": "b7b9b7",
       "x": "390",
       "y": "780",
-      "color": "b7b9b7",
-      "en": "The History of the India to the West",
-      "es": "Historia de la India occidental",
       "image": "2KXJ8ZSFBTX3U",
-      "imagexy": "870,1140,242,242",
-      "storymap": {
-        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-eng/index.html",
-        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-spanish/index.html"
-      }
+      "imagexy": "870,1140,242,242"
     },
     {
-      "countryen": "Mexico",
-      "countryes": "México",
+      "en": {
+        "country": "Mexico",
+        "title": "Farmers vs. Covarrubias",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeing-race-b4-race-farmers-vs-covarrubias-map-2/index.html"
+      },
+      "es": {
+        "country": "México",
+        "title": "Mapa de territorios mexicanos",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeingrbr-covarrubias-spanish-storymap/index.html"
+      },
+      "color": "e4cd84",
       "x": "1140",
       "y": "666",
-      "color": "e4cd84",
-      "en": "Farmers vs. Covarrubias",
-      "es": "Mapa de territorios mexicanos",
       "image": "2KXJ8ZSAZL3FE",
-      "imagexy": "480,675,420,420",
-      "storymap": {
-        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeing-race-b4-race-farmers-vs-covarrubias-map-2/index.html",
-        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeingrbr-covarrubias-spanish-storymap/index.html"
-      }
+      "imagexy": "480,675,420,420"
     },
     {
-      "countryen": "England",
-      "countryes": "Inglaterra",
+      "en": {
+        "country": "England",
+        "title": "A Wonder of Wonders",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-wonders-eng/index.html"
+      },
+      "es": {
+        "country": "Inglaterra",
+        "title": "Una maravilla de maravillas",
+        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-wonders-spanish/index.html"
+      },
+      "color": "a2a76e",
       "x": "645",
       "y": "885",
-      "color": "a2a76e",
-      "en": "A Wonder of Wonders",
-      "es": "Una maravilla de maravillas",
       "image": "2KXJ8ZSARPTCP",
-      "imagexy": "230,640,680,680",
-      "storymap": {
-        "en": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-wonders-eng/index.html",
-        "es": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-wonders-spanish/index.html"
-      }
+      "imagexy": "230,640,680,680"
     }
   ]
 }

@@ -4,12 +4,13 @@
     import {slugify } from '$lib'
     import '$lib/main.css';
     import allContent from '$lib/content.json';
+
     const gallery = $page.url.pathname.includes('gallery')
     $: storymapId = $page.params.id
     $: lang =  $page.params.lang || 'en'
     $: content = allContent[lang]
-    $: storymapContent = allContent.tiles.filter(f => slugify(f.countryen) === storymapId)[0]
-    $: storymapurl = storymapContent.storymap[lang]
+    $: storymapContent = allContent.tiles.filter(f => slugify(f.en.country) === storymapId)[0]
+    $: storymapurl = storymapContent[lang].storymap
     $: imgUrl = storymapContent.imagexy ? storymapContent.imagexy + '/max' : 'full/,300'
 </script>
 <svelte:head>
@@ -26,10 +27,10 @@
                 {content.title}
             </a>
         </div>
-        <h1 class="storymap-title">{storymapContent[lang]}</h1>
+        <h1 class="storymap-title">{storymapContent[lang].title}</h1>
         <!-- <img class="storymap-img" src="https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg" alt=""> -->
         <div class="btn-box"> 
-            <a class="home-btn" href="{base}/{gallery ? 'gallery/' : ''}{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another map": "Elige Otro Mapa"}</a>
+            <a class="home-btn" href="{base}/{gallery ? 'gallery/' : ''}{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another object": "Elige otro objeto"}</a>
             <div class="mini-btn-box">
                 <a class="lang-btn" href="{base}/{gallery ? 'gallery/' : ''}es/{$page.params.id}" style="background: #{storymapContent.color};">{content.es}</a>
                 <a class="lang-btn" href="{base}/{gallery ? 'gallery/' : ''}{$page.params.id}" style="background: #{storymapContent.color};">{content.en}</a>
@@ -86,7 +87,7 @@
             background-repeat: no-repeat;
             position: relative;
             padding: 10px;
-            flex-basis: 300px;
+            flex-basis: 350px;
             height: 100vh;
             gap : 10vh;
             display: flex;
