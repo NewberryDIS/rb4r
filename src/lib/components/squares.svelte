@@ -4,15 +4,15 @@
     import {slugify} from '$lib'
     export let cardHover, tile, idx, gallery = false
     $: lang = $page.params.lang || 'en'
-    $: countrykey  = 'country' +  lang 
-    $: slug = slugify(tile.countryen)
-    $: linkUrl =`${ lang ? '/' + lang : ''}/${ slug }` 
+    $: countrykey  = 'country' +  lang
+    $: slug = slugify(tile.en.country)
+    // $: linkUrl =`${ lang ? '/' + lang : ''}/${ slug }` 
 
-    const imgUrl = tile.imagexy ? tile.imagexy + '/max' : 'full/,300' 
+    // const imgUrl = tile.imagexy ? tile.imagexy + '/max' : 'full/,300' 
 </script>
 <a href="{base}/{gallery ? 'gallery/' : ''}{lang === 'es' ? lang + '/' : ''  }{slug}" class="card card-{idx} {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} >
     <p class="card-text" style=" background-color: #{tile.color};" >
-        {tile[countrykey]}
+        {tile[lang].country}
     </p>
     <!-- <div class="card-image" style="background-image: url('{base}/{slug}.jpg')"><span></span></div> -->
     <div class="img-wrapper">
@@ -20,7 +20,7 @@
     </div>
     <p class="card-text btm" style=" background-color: #{tile.color};" >
         <span>
-            {tile[lang]}
+            {tile[lang].title}
         </span>
     </p>
 </a>

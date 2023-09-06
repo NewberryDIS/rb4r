@@ -7,15 +7,15 @@
     $: storymapId = $page.params.id
     $: lang =  $page.params.lang || 'en'
     $: content = allContent[lang]
-    $: storymapContent = allContent.tiles.filter(f => slugify(f.countryen) === storymapId)[0]
-    $: storymapurl = storymapContent.storymap[lang]
+    $: storymapContent = allContent.tiles.filter(f => slugify(f.en.country) === storymapId)[0]
+    $: storymapurl = storymapContent[lang].storymap
     $: imgUrl = storymapContent.imagexy ? storymapContent.imagexy + '/max' : 'full/,300'
 </script>
 <svelte:head>
     <title>{content.title}</title>
 </svelte:head>
 <main >
-    <div class="left" style="background-image: linear-gradient( rgba(var(--midnight), 0.7), rgba(var(--midnight), 0.7) ), url('{base}/{storymapId}.jpg');" >
+    <div class="left" style="background-image: linear-gradient( rgba(var(--fg-color-1), 0.7), rgba(var(--fg-color-1), 0.7) ), url('{base}/{storymapId}.jpg');" >
         <div class="bg" ></div>
         <div class="logo">
             <a href="https://www.newberry.org/" class="center nolines" target="_blank">
@@ -25,10 +25,10 @@
                 {content.title}
             </a>
         </div>
-        <h1 class="storymap-title">{storymapContent[lang]}</h1>
+        <h1 class="storymap-title">{storymapContent[lang].title}</h1>
         <!-- <img class="storymap-img" src="https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg" alt=""> -->
         <div class="btn-box"> 
-                <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another map": "Elige Otro Mapa"}</a>
+                <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another object": "Elige otro objeto"}</a>
             <div class="mini-btn-box">
                 <a class="lang-btn" href="{base}/es/{$page.params.id}" style="background: #{storymapContent.color};">{content.es}</a>
                 <a class="lang-btn" href="{base}/{$page.params.id}" style="background: #{storymapContent.color};">{content.en}</a>
