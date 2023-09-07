@@ -117,7 +117,8 @@
         h1 {
             width: 95%;
             color: rgb(var(--bg-color-2));
-            font-size: 6vh;
+            font-size: 5vh;
+            padding: 1vw;
             margin: 0 auto;
             font-family: "flecha";
         }
