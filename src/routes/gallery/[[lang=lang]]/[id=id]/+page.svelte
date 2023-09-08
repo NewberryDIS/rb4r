@@ -86,7 +86,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             position: relative;
-            padding: 10px;
+            padding: 16px;
             flex-basis: 350px;
             height: 100vh;
             gap : 10vh;

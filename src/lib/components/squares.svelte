@@ -2,7 +2,7 @@
     import {page} from '$app/stores'
     import {base} from '$app/paths'
     import {slugify} from '$lib'
-    export let cardHover, tile, idx, gallery = false
+    export let cardHover, tile, idx
     $: lang = $page.params.lang || 'en'
     $: countrykey  = 'country' +  lang
     $: slug = slugify(tile.en.country)
@@ -10,14 +10,14 @@
 
     // const imgUrl = tile.imagexy ? tile.imagexy + '/max' : 'full/,300' 
 </script>
-<a href="{base}/{gallery ? 'gallery/' : ''}{lang === 'es' ? lang + '/' : ''  }{slug}" class="card card-{idx} {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} >
+<a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}" class="card card-{idx} {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} >
     <p class="card-text" style=" background-color: #{tile.color};" >
         {tile[lang].country}
     </p>
-    <!-- <div class="card-image" style="background-image: url('{base}/{slug}.jpg')"><span></span></div> -->
-    <div class="img-wrapper">
-    <img src="{base}/{slug}.jpg" alt="" class="card-image" />
-    </div>
+    <div class="card-image" style="background-image: url('{base}/{slug}.jpg')"><span></span></div>
+    <!-- <div class="img-wrapper"> -->
+    <!--     <img src="{base}/{slug}.jpg" alt="" class="card-image" /> -->
+    <!-- </div> -->
     <p class="card-text btm" style=" background-color: #{tile.color};" >
         <span>
             {tile[lang].title}
@@ -26,11 +26,7 @@
 </a>
 
 <style>
-    .btm {
-        line-height: 1em;
-    }
 .card {
-    flex:1;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -45,25 +41,36 @@
     text-decoration: none;
     transition: 200ms;
 }
-    .card-hover {
-        filter: brightness(1.25);
+@media screen and (min-width: 1000px){
+    .card {
+        flex:1;
     }
-    .img-wrapper {
-        width: 100%;
-        flex: 1;
+    .card-image {
         height: 260px;
     }
+}
+@media screen and (max-width: 999px){
+    .card {
+        flex: 1 0 auto;
+        height: 50%;
+    }
+    .card-image {
+        height: auto;
+        flex: 1;
+    }
+}
+.card-hover {
+    filter: brightness(1.25);
+}
+.img-wrapper {
+    width: 100%;
+    flex: 1;
+    height: 260px;
+}
 .card-image {
     width: 100%;
-    /* flex: 1; */
-    height: 260px;
-    /* background-position: center; */
-    /* background-size: cover; */
-    /* height: 100%; */
-    /* max-height: 100%; */
-    /* width: auto; */
-    object-fit: cover;
-    /* object-position: center; */
+    background-position: center;
+    background-size: cover;
 }
 .card-text {
     width: 100%;
@@ -78,10 +85,12 @@
     /* text-align: center; */
     padding-inline : 8px;
     margin: 0;
-        text-align: center;
+    text-align: center;
+}
+.btm {
+    line-height: 1em;
 }
 /* .card-text span { */
-/*     white-space: nowrap; */
 /*     overflow: hidden; */
 /* text-overflow: ellipsis; */
 /**/
