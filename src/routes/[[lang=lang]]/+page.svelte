@@ -6,7 +6,7 @@
     import Header from '$comps/header.svelte';
     import Circle from '$comps/circles.svelte';
     import Square from '$comps/squares.svelte';
-    import {height, width} from '$lib'
+    import {height, width, vari} from '$lib'
     $: lang = $page.params.lang || 'en';
     $: content =  allContent[lang] 
     // $: content = lang in allContent ? allContent[lang] : allContent.en;
@@ -23,8 +23,8 @@
     <div class="circles" id="map" style="background-image: url('{base}/map-bg.jpg'); flex-basis: {Math.max($width * 0.72, $height * 0.5)}px;">
         <div class="banner-wrapper" style="">
             <div class="banner">
-                <div class="banner-toptext">{content.hero.header}</div>
-                <div class="banner-bottomtext">{@html content.hero.subtitle}</div>
+                <div  class="banner-toptext">{content.hero.header}</div>
+                <div class="{!$vari ? 'hide' : ''} banner-bottomtext">{@html content.hero.subtitle}</div>
             </div>
         </div>
         {#each allContent.tiles as circe, idx}
@@ -63,17 +63,15 @@
             /* height: auto; */
             flex: 1;
             flex-wrap: wrap;
-            justify-content: stretch;
+            justify-content: center;
             align-items: stretch;
+            /* gap: 2px; */
         }
-    }
-    .banner-wrapper {
-        width: 100%;
     }
     @media screen and (min-width: 851px){
         .banner {
-            padding: 5vw 128px;
-            width: 60vw;
+            padding: 16px 32px 16px 16px;
+            width: 75vw;
         }
         .banner-wrapper {
             padding-top: 75px;
@@ -85,12 +83,9 @@
                 );
             background-position: fixed;
         }
-        .banner {
-        }
     }
     @media screen and (max-width: 850px){
         .banner-wrapper {
-            padding-top: 128px;
             background: rgba(0,0,0,0);
         }
         .banner {
@@ -100,60 +95,46 @@
             padding: 32px;
         }
     }
+    @media screen and (min-width: 700px) and  (max-width: 850px){
+        .banner-wrapper {
+            padding-top: 128px;
+        }
+    }
+    @media screen and (max-width: 699px){
+        .banner-wrapper {
+            padding-top: 85px;
+        }
+    }
+    .banner-wrapper {
+        width: 100%;
+    }
     .banner-toptext {
-        font-size: 32px;
+        font-size: 24px;
     }
 
     .banner-bottomtext {
-        font-size: 20px;
+        font-size: 18px;
     }
     .content {
-        /* position: relative; */
         height:100vh; 
-        /* max-height: calc(100vh - 75px); */
         top:0;
-        /* position: fixed; */
         bottom: 0;
         left: 0;
         right: 0;
-
-        /* background-repeat: no-repeat; */
-        /* margin-top: 75px; */
         display: flex;
         flex-direction: column;
-        }
-        .circles {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            /* width: 100vw; */
-            /* height: 100vh; */
-            /* background: url('https://collections.newberry.org/IIIF3/Image/2KXJ8ZSFBTPJ9/350,250,1450,1050/max/0/default.jpg'); */
-            /* background: url('map-bg.jpg'); */
-            background-position: bottom;
-            background-size: 100vw auto;
+    }
+    .circles {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-position: bottom;
+        background-size: 100vw auto;
 
-        }
-        /* @media screen and ( min-width: 1000px ){ */
-        /**/
-        /*     .content { */
-        /*         flex-direction: row; */
-        /*     } */
-        /*     .tiles  { */
-        /**/
-        /*         flex-direction: column; */
-        /*         width: 350px; */
-        /*     } */
-        /* } */
-        /* @media screen and ( max-width: 999px ){ */
-        .tiles {
-            /* flex-basis: 350px; */
-            display: flex;
-            /* display: grid; */
-            /* grid-template-columns: repeat(5, 1fr); */
-            /* grid-template-rows: 1fr; */
-            /* grid-column-gap: 0px; */
-            /* grid-row-gap: 0px;  */
-            background: rgb(var(--bg-color-2));
-        }
+    }
+    .tiles {
+        display: flex;
+        background: var(--bg-2);
+        background-attachment: fixed;
+    }
 </style>	

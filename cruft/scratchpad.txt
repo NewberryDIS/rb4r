@@ -1,6 +1,7 @@
+
 <script>
-    import { browser } from '$app/environment'
     import { onMount } from 'svelte'
+    import { browser } from "$app/environment";
     import { page } from '$app/stores'
     import { base } from '$app/paths'
     import { slugify, width } from '$lib'
@@ -8,17 +9,9 @@
     $: lang = $page.params.lang || 'en'
     $: countrykey  = 'country' +  lang
     $: slug = slugify(tile.en.country)
-    let cardImage, popoutCss, cardDims
-    // $: popoutCss = 
-    // $: cardDims = browser ? cardImage.getBoundingClientRect() : ''
-    // $: browser && console.log(cardImage.getBoundingClientRect())
-
-    onMount(() => {
-        cardDims = cardImage.getBoundingClientRect()
-        popoutCss = cardDims.left < cardDims.height ? `right: ` : `left : `
-        console.log(popoutCss)
-    })
-    // $: popoutCss = browser && ( cardDims.left < 0 ? 'right' : 'left')
+    let cardImage, cardClientHeight, cardDims
+    $: cardDims = browser ? cardImage.getBoundingClientRect() : {}
+    $: popoutCss = browser && ( cardDims.left < 0 || cardDims.right > $width ) ? 'right: ' :'eft'
 </script>
 {#if $width > 1000}
 <a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}" id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99}  style=" background-color: #{tile.color};">
@@ -36,11 +29,11 @@
     </p>
 </a>
 {:else}
-<a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}"   id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} bind:this={cardImage} >
-    <div class="grid-image" style="background-image: url('{base}/{slug}.jpg'); right: -{cardDims.height}px;"  />
-    <!-- <div class="grid-image" style="background-image: url('{base}/{slug}.jpg'); {cardHover === idx ? `right: ${cardDims.height}px;` : ''}" /> -->
+<a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}"  bind:clientHeight={ cardClientHeight } id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} >
+    <div class="grid-image" style="background-image: url('{base}/{slug}.jpg'); right: -{cardClientHeight}px;" bind:this={cardImage} />
+    <!-- <div class="grid-image" style="background-image: url('{base}/{slug}.jpg'); {cardHover === idx ? `right: ${cardClientHeight}px;` : ''}" /> -->
     <div class="grid-text"  style=" background-color: #{tile.color};">
-        <div class="grid-country">{tile[lang].country} {cardDims.height}</div>
+        <div class="grid-country">{tile[lang].country} {cardClientHeight}</div>
         <div class="grid-title"  >{tile[lang].title}</div>
     </div>
 </a>

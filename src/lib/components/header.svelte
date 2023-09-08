@@ -1,10 +1,8 @@
 <script>
     import { page } from '$app/stores';
     import {base } from '$app/paths'
-    export let content, gallery = false;
-    let titleLeft = true
-    import { width, height} from '$lib'
-    // titleLeft = false
+    export let content
+    import { width, height, vari } from '$lib'
     $: lang = $page.params.lang || 'en'
 </script>
 
@@ -14,27 +12,21 @@
             <img src="{base}/NLogo.png" height="64" width="64" alt={content.logoalt} />
         </a>
         <div class="left-text">
-            <h1 class="maxi-h1 truncate">{content.title}</h1>
-            <br />
-            <span class="truncate hero-subheader">{content.subtitle}</span>
+            <h1 class="maxi-h1 truncate">{content.title}: {content.subtitle}</h1>
         </div>
     </div>
     <div class="header-right">
         <div class="change-lang">
-            <a href="{base}/{gallery ? 'gallery/' : ''}es" class={lang === 'es' ? 'active' : ''}>
+            <a href="{base}/es" class={lang === 'es' ? 'active' : ''}>
                 {content.es}
             </a>
-            <a href="{base}/{gallery ? 'gallery/' : ''}" class={lang !== 'es' ? 'active' : ''}>
+            <a href="{base}/" class={lang !== 'es' ? 'active' : ''}>
                 {content.en}
             </a>
-            <a href="{base}/{gallery ? 'gallery/' : ''}{lang ? 'es/' : ''}credits" >
+            <a href="{base}/{lang ? 'es/' : ''}credits" >
                 { lang === 'es' ? 'credits' : 'Credits' }
             </a>
         </div>
-        {#if !titleLeft}
-            <h1 class="truncate">{content.title}</h1>
-            <h2 class="truncate">{content.subtitle}</h2>
-        {/if}
     </div>
 </header>
 
@@ -116,6 +108,8 @@
         flex-direction: column;
         justify-content: space-evenly;
         align-items: flex-end;
+        background: var(--bg-2);
+        background-attachment: fixed;
     }
     .change-lang {
         display: flex;

@@ -1,5 +1,7 @@
 // place files you want to import through the `$lib` alias in this folder.
 import { writable } from "svelte/store";
+
+export const vari = writable(false);
 export const width = writable(0);
 export const height = writable(0);
 export function slugify(string) {
