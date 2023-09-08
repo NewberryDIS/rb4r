@@ -11,7 +11,6 @@
     $: content =  allContent[lang] 
     // $: content = lang in allContent ? allContent[lang] : allContent.en;
     let cardHover = 99;
-    // $: top = 
 </script>
 
 <svelte:head>
@@ -19,37 +18,94 @@
 </svelte:head>
 <!-- <svelte:body on:click={(e) => handleBodyClick(e)} /> -->
 
-<main class="horiz content">
+<main class=" content">
     <Header {content} />
-    <div class="circles" id="map" style="background-image: url('{base}/map-bg.jpg');">
-        {#if $width < $height}
-            <div class="top-squares">
-                {#each allContent.tiles.slice(0,3) as tile, idx}
-                    <Square bind:cardHover {tile} {idx} />
-                {/each}</div>
-        {/if}
-        <!-- <span class="tester">asdfasdf</span> -->
+    <div class="circles" id="map" style="background-image: url('{base}/map-bg.jpg'); flex-basis: {Math.max($width * 0.72, $height * 0.5)}px;">
+        <div class="banner-wrapper" style="">
+            <div class="banner">
+                <div class="banner-toptext">{content.hero.header}</div>
+                <div class="banner-bottomtext">{@html content.hero.subtitle}</div>
+            </div>
+        </div>
         {#each allContent.tiles as circe, idx}
             <Circle bind:cardHover {circe} {idx} />
         {/each}
     </div>
     <div class="tiles">
-        {#if $width < $height}
-            {#each allContent.tiles.slice(3,5) as tile, idx}
-                <Square bind:cardHover {tile} {idx} />
-            {/each}
-        {:else}
-            {#each allContent.tiles as tile, idx}
-                <Square bind:cardHover {tile} {idx} />
-            {/each}
-        {/if}
+        <!-- {#if $width < $height} -->
+        <!--     {#each allContent.tiles.slice(3,5) as tile, idx} -->
+        <!--         <Square bind:cardHover {tile} {idx} /> -->
+        <!--     {/each} -->
+        <!-- {:else} -->
+        {#each allContent.tiles as tile, idx}
+            <Square bind:cardHover {tile} {idx} />
+        {/each}
+        <!-- {/if} -->
     </div>
 </main>
 <style>
-    .top-squares {
-        margin-top: 75px;
-        display: flex;
+    @media screen and (min-width: 1000px){
+        .tiles {
 
+            height: 350px;
+            flex: 0 1 auto;
+            justify-content: stretch;
+            align-items: stretch;
+            flex-wrap: no-wrap;
+        }
+        .circles {
+
+            flex: 1;
+        }
+    }
+    @media screen and (max-width: 999px){
+        .tiles {
+            /* height: auto; */
+            flex: 1;
+            flex-wrap: wrap;
+            justify-content: stretch;
+            align-items: stretch;
+        }
+    }
+    .banner-wrapper {
+        width: 100%;
+    }
+    @media screen and (min-width: 851px){
+        .banner {
+            padding: 5vw 128px;
+            width: 60vw;
+        }
+        .banner-wrapper {
+            padding-top: 75px;
+            background:  linear-gradient(
+                var(--angle),
+                rgb(var(--rb4r-green)) 0vw,
+                var(--dist),
+                rgb(0,0,0,0) var(--dist) 100vw
+                );
+            background-position: fixed;
+        }
+        .banner {
+        }
+    }
+    @media screen and (max-width: 850px){
+        .banner-wrapper {
+            padding-top: 128px;
+            background: rgba(0,0,0,0);
+        }
+        .banner {
+            width: 90vw;
+            margin: auto;
+            background: rgb(var(--rb4r-green));
+            padding: 32px;
+        }
+    }
+    .banner-toptext {
+        font-size: 32px;
+    }
+
+    .banner-bottomtext {
+        font-size: 20px;
     }
     .content {
         /* position: relative; */
@@ -72,7 +128,6 @@
             position: relative;
             /* width: 100vw; */
             /* height: 100vh; */
-            flex: 1;
             /* background: url('https://collections.newberry.org/IIIF3/Image/2KXJ8ZSFBTPJ9/350,250,1450,1050/max/0/default.jpg'); */
             /* background: url('map-bg.jpg'); */
             background-position: bottom;
@@ -92,16 +147,8 @@
         /* } */
         /* @media screen and ( max-width: 999px ){ */
         .tiles {
-
-            height: 350px;
-        }
-        /* } */
-        .tiles {
             /* flex-basis: 350px; */
             display: flex;
-            justify-content: stretch;
-            align-items: stretch;
-            flex-wrap: no-wrap;
             /* display: grid; */
             /* grid-template-columns: repeat(5, 1fr); */
             /* grid-template-rows: 1fr; */
