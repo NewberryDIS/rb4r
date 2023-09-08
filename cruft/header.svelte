@@ -3,7 +3,9 @@
     import { base } from "$app/paths";
     export let content;
     let titleLeft = true;
+    import { width, height } from "$lib";
     // titleLeft = false
+    $: lang = $page.params.lang || "en";
 </script>
 
 <header>
@@ -15,38 +17,21 @@
             alt={content.logoalt}
         />
         <div class="left-text">
-            <!-- {#if titleLeft} -->
-            <!-- {/if} -->
-            <div class="truncate header-hero">
-                <h1 class="mini-h1 truncate">
-                    {content.title}: {content.subtitle}
-                </h1>
-                <br />
-                <span class="truncate hero-header">{content.hero.header}</span>
-                <br />
-                <span class="truncate hero-subheader"
-                    >{@html content.hero.subtitle}</span
-                >
-            </div>
+            <h1 class="maxi-h1 truncate">{content.title}</h1>
+            <br />
+            <span class="truncate hero-subheader">{content.subtitle}</span>
         </div>
     </div>
     <div class="header-right">
         <div class="change-lang">
-            <a
-                href="{base}/es"
-                class={$page.params.lang === "es" ? "active" : ""}
-            >
+            <a href="{base}/es" class={lang === "es" ? "active" : ""}>
                 {content.es}
             </a>
-            <a
-                href="{base}/"
-                class={$page.params.lang !== "es" ? "active" : ""}
-            >
+            <a href="{base}/" class={lang !== "es" ? "active" : ""}>
                 {content.en}
             </a>
-            <a href="{base}/{$page.params.lang ? 'es/' : ''}credits">
-                <!-- {content.credits} -->
-                credits
+            <a href="{base}/{lang ? 'es/' : ''}credits">
+                {lang === "es" ? "credits" : "Credits"}
             </a>
         </div>
         {#if !titleLeft}
@@ -67,12 +52,12 @@
         max-height: 75px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: flex-start;
         margin-inline: 32px;
     }
-    .mini-h1,
-    .mini-h2,
+    .maxi-h1,
+    .maxi-h2,
     .hero-header,
     .hero-subheader {
         margin: 0;
@@ -85,18 +70,18 @@
         font-size: 1rem;
         line-height: 1rem;
     }
-    .hero-header {
+    .maxi-h1 {
         font-weight: 900;
         font-size: 32px;
         line-height: 33px;
     }
     header {
-        /* position: fixed; */
-        flex-basis: 75px;
+        /* flex-basis: 75px; */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
         height: 75px;
-        /* top: 0; */
-        /* left: 0; */
-        /* right: 0; */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -111,7 +96,6 @@
         justify-content: flex-start;
         align-items: center;
     }
-
     .header-left img {
         height: 64px;
     }
@@ -128,6 +112,7 @@
         font-size: 20px;
     }
     .header-right {
+        background: rgb(var(--bg-color-1));
         height: 75px;
         display: flex;
         flex-direction: column;
@@ -136,12 +121,15 @@
     }
     .change-lang {
         display: flex;
-        justify-content: flex-end;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        margin: 0;
+        gap: 1px;
+        margin: 1px 0;
         z-index: 40;
     }
     .change-lang a {
+        font-size: 0.77rem;
         background: rgb(var(--bg-color-1));
         background: rgb(var(--fg-color-1));
         text-align: center;

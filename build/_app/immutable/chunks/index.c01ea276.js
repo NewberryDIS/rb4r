@@ -1,0 +1,1 @@
+import{w as e}from"./index.a34c71d7.js";const t=e(0),s=e(0);function o(r){return r.normalize("NFKD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase().replace(/[^a-z0-9 -]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-")}export{s as h,o as s,t as w};
