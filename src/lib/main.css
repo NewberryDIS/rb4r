@@ -8,8 +8,9 @@ body {
   padding: 0;
 }
 body {
-  background: var(--bg-2);
-  background-attachment: fixed;
+  /* background: var(--bg-2); */
+  background-image: url("/map-bg.jpg");
+  /* background-attachment: fixed; */
   overflow-x: hidden;
 }
 body * {

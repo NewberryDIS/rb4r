@@ -12,7 +12,7 @@
             <img src="{base}/NLogo.png" height="64" width="64" alt={content.logoalt} />
         </a>
         <div class="left-text">
-            <h1 class="maxi-h1 truncate">{content.title}: {content.subtitle}</h1>
+            <h1 class="maxi-h1">{content.title}: {content.subtitle}</h1>
         </div>
     </div>
     <div class="header-right">
@@ -31,13 +31,13 @@
 </header>
 
 <style>
-    .truncate {
-
-        white-space: nowrap;
-        overflow-x: hidden;
-        overflow-y: visible;
-        text-overflow: ellipsis;
-    }
+    /* .truncate { */
+    /**/
+    /*     white-space: nowrap; */
+    /*     overflow-x: hidden; */
+    /*     overflow-y: visible; */
+    /*     text-overflow: ellipsis; */
+    /* } */
     .left-text {
         max-height: 75px;
         display: flex;
@@ -46,19 +46,15 @@
         align-items: flex-start;
         margin-inline: 32px;
     }
-    .maxi-h1, .maxi-h2, .hero-header, .hero-subheader {
+    .maxi-h1 {
         margin: 0;
         padding: 0;
     }
-    .mini-h1, .mini-h2 , .hero-subheader{
-        display: inline;
-        font-size: 1rem;
-        line-height: 1rem;
-    }
     .maxi-h1 {
+        width: 65vw;
         font-weight: 900;
         font-size: 32px;
-        line-height: 33px;
+        line-height: 28px;
     }
     header {
         /* flex-basis: 75px; */

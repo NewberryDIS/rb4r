@@ -1,49 +1,31 @@
 <script>
-    import { browser } from '$app/environment'
-    import { onMount } from 'svelte'
     import { page } from '$app/stores'
     import { base } from '$app/paths'
     import { slugify, width } from '$lib'
     export let cardHover, tile, idx
     $: lang = $page.params.lang || 'en'
-    $: countrykey  = 'country' +  lang
     $: slug = slugify(tile.en.country)
-    let cardImage, popoutCss, cardDims
-    // $: popoutCss = 
-    // $: cardDims = browser ? cardImage.getBoundingClientRect() : ''
-    // $: browser && console.log(cardImage.getBoundingClientRect())
-
-    onMount(() => {
-        cardDims = cardImage.getBoundingClientRect()
-        popoutCss = cardDims.left < cardDims.height ? `right: ` : `left : `
-        console.log(popoutCss)
-    })
-    // $: popoutCss = browser && ( cardDims.left < 0 ? 'right' : 'left')
 </script>
 {#if $width > 1000}
-<a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}" id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99}  style=" background-color: #{tile.color};">
-    <p class="card-text" style=" background-color: #{tile.color};" >
-        {tile[lang].country}
-    </p>
-    <div class="card-image" style="background-image: url('{base}/{slug}.jpg')"><span> </span></div>
-    <!-- <div class="img-wrapper"> -->
-    <!--     <img src="{base}/{slug}.jpg" alt="" class="card-image" /> -->
-    <!-- </div> -->
-    <p class="card-text btm" style=" background-color: #{tile.color};" >
-        <span>
-            {tile[lang].title}
-        </span>
-    </p>
-</a>
+    <a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}" id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99}  style=" background-color: #{tile.color};">
+        <p class="card-text" style=" background-color: #{tile.color};" >
+            {tile[lang].country}
+        </p>
+        <div class="card-image" style="background-image: url('{base}/{slug}.jpg')"><span> </span></div>
+        <p class="card-text btm" style=" background-color: #{tile.color};" >
+            <span>
+                {tile[lang].title}
+            </span>
+        </p>
+    </a>
 {:else}
-<a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}"   id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99} bind:this={cardImage} >
-    <div class="grid-image" style="background-image: url('{base}/{slug}.jpg'); right: -{cardDims.height}px;"  />
-    <!-- <div class="grid-image" style="background-image: url('{base}/{slug}.jpg'); {cardHover === idx ? `right: ${cardDims.height}px;` : ''}" /> -->
-    <div class="grid-text"  style=" background-color: #{tile.color};">
-        <div class="grid-country">{tile[lang].country} {cardDims.height}</div>
-        <div class="grid-title"  >{tile[lang].title}</div>
-    </div>
-</a>
+    <a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}"   id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99}  >
+        <div class="grid-image" style="background-image: url('{base}/{slug}.jpg'); left: 0;"  />
+        <div class="grid-text"  style=" background-color: #{tile.color};">
+            <div class="grid-country">{tile[lang].country}</div>
+            <div class="grid-title"  >{tile[lang].title}</div>
+        </div>
+    </a>
 {/if}
 
 <style>
@@ -52,41 +34,61 @@
     color: inherit;
     text-decoration: none;
     transition: 200ms;
-    flex-grow: 1;
     position: relative;
     /* height: 100%; */
 }
-.card-hover .grid-image {
-    /* left: 75%;  */
-    right: 0 !important;
+@media screen and (min-width: 1000px) {
+    .card {
+        flex:1;
+    }
+    .card-image {
+        max-height: 260px;
+        flex: 1;
+    }
+    .cardgrid {
+        flex-direction: column;
+        flex: 1;
+    }
+}
+@media screen and (max-width: 999px) {
+    .card {
+        flex: 1 0 auto;
+        height: 50%;
+    }
+    .card-text {
+        flex-basis: initial;
+        /* flex: 1; */
+    }
+    .btm span{
+        font-size: max(3vw, 24px);
+        min-width: 0;
+        word-wrap: break-word;
+    }
+    .card-image {
+        /* display: none; */
+        height: initial;
+        flex: 1;
+    }
+    .cardgrid {
+        flex: 1 0 auto;
+    }
+    .grid-text {
+
+        min-width: 150px;
+    }
 }
 .grid-image { 
-    position: absolute;
-    /* left: 100%; */
-    right: 0;
     border: 1px solid black;
-    flex: 1;
     height: 100%;
     transition: 200ms;
     aspect-ratio: 1 / 1;
-    /* border-color: rgba(var(--midnight),1) transparent rgba(var(--midnight),1) rgba(var(--midnight),1); */
-    /* flex-basis: 100px; */
-    /* width: 100px; */
-    /* height: 100px; */
-    /* min-width: 100px; */
-    /* min-height: 100px; */
-    /* max-width: 100px; */
-    /* max-height: 100px; */
     overflow: hidden;
     border-radius: 50% 0 0 50%;
     background-position: center;
     background-size: cover;
 }
- .grid-text { 
+.grid-text { 
     flex:2;
-    /* border: 1px solid black; */
-    /* border-color: rgba(var(--midnight),1)  rgba(var(--midnight),1) rgba(var(--midnight),1) transparent; */
-    /* height: 100px; */
     padding: 8px 1vw 8px 2vw;
     display: flex;
     flex-direction: column;
@@ -94,12 +96,9 @@
     align-items: flex-start;
 } 
 .grid-text > div {
-    /* max-width: 200px; */
-    /* white-space: wrap; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
 }
 .grid-title {
     justify-content: flex-start;
@@ -113,11 +112,6 @@
 }
 .cardgrid .card-text, .cardgrid .card-image {
     min-width: 0;
-}
-
-
-.cardflex {
-
 }
 
 .card {
@@ -134,35 +128,6 @@
     text-decoration: none;
     transition: 200ms;
 }
-@media screen and (min-width: 1000px){
-    .card {
-        flex:1;
-    }
-    .card-image {
-        height: 260px;
-    }
-}
-@media screen and (max-width: 999px){
-    .card {
-        flex: 1 0 auto;
-        height: 50%;
-    }
-    .card-text {
-        flex-basis: initial;
-        /* flex: 1; */
-    }
-    .btm span{
-        font-size: max(3vw, 24px);
-        min-width: 0;
-        word-wrap: break-word;
-
-    }
-    .card-image {
-        /* display: none; */
-        height: initial;
-        flex: 1;
-    }
-}
 .card-hover {
     filter: brightness(1.25);
 }
@@ -177,8 +142,6 @@
     background-size: cover;
 }
 .card-text {
-    /* width: 100%; */
-    /* flex: 1; */
     flex-basis: 45px;
     min-height: 45px;
     border: none;
@@ -194,15 +157,4 @@
 .btm {
     line-height: 1em;
 }
-/* .card-text span { */
-/*     overflow: hidden; */
-/* text-overflow: ellipsis; */
-/**/
-/*     } */
-/**/
-/* .card-0 { grid-area: 1 / 1 / 2 / 2; } */
-/* .card-1 { grid-area: 1 / 2 / 2 / 3; } */
-/* .card-2 { grid-area: 1 / 3 / 2 / 4; } */
-/* .card-3 { grid-area: 1 / 4 / 2 / 5; } */
-/* .card-4 { grid-area: 1 / 5 / 2 / 6; }  */
 </style>
