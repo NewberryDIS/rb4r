@@ -20,7 +20,7 @@
     </a>
 {:else}
     <a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}"   id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99}  >
-        <div class="grid-image" style="background-image: url('{base}/{slug}.jpg'); left: 0;"  />
+        <div class="grid-image" style="background-image: linear-gradient(to right, rgba(0,0,0,0) 0, 80%, #{tile.color}), url('{base}/{slug}.jpg'); left: 0;"  />
         <div class="grid-text"  style=" background-color: #{tile.color};">
             <div class="grid-country">{tile[lang].country}</div>
             <div class="grid-title"  >{tile[lang].title}</div>
@@ -42,8 +42,8 @@
         flex:1;
     }
     .card-image {
-        max-height: 260px;
-        flex: 1;
+        height: 260px;
+        /* flex: 1; */
     }
     .cardgrid {
         flex-direction: column;
@@ -71,19 +71,22 @@
     }
     .cardgrid {
         flex: 1 0 auto;
+        min-width: 30vw;
     }
     .grid-text {
 
-        min-width: 150px;
+        /* min-width: 150px; */
     }
 }
 .grid-image { 
-    border: 1px solid black;
+    border-left:    1px solid var(--midnight);  
+    border-top:      1px solid var(--midnight);
+    border-bottom:   1px solid var(--midnight);
     height: 100%;
     transition: 200ms;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 50% 0 0 50%;
+    /* border-radius: 50% 0 0 50%; */
     background-position: center;
     background-size: cover;
 }

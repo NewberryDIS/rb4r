@@ -67,6 +67,7 @@ import "bigger-picture/css";
 <div id="images">
 {#each bgs as bg, idx}
 	<a
+         class="bp-link"
             href="{base}{bg}"
 		data-img="{base}{bg}"
 		data-thumb="{base}{bg}"
@@ -75,7 +76,8 @@ import "bigger-picture/css";
 		data-height="{idx === 0 ? 1000 : 768}"
 		data-width="{idx === 0 ? 1450 : 768}"
 	>
-		<img
+            <img
+                class="bp-thumb"
 			src="{base}{bg}"
 			alt=""
 		/>

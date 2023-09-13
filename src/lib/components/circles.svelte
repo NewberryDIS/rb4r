@@ -12,7 +12,7 @@
     // so, the `bottom` assignment starts with asking 'which is *smaller* - the ratio of the width of the frame and the width of the map image?
     // or the of the height and and the height of the map image?
     $: left = $width && $width > 0 ? Math.floor($width * (circe.x / 1450)) - 25 : circe.x - 25
-    $: bottom = Math.min($width / 1450, ($height - ( 75 + $height * 0.35 )) / 1000 ) * ( 865 - y)
+    $: bottom = Math.min($width / 1450, ($height - ( 75 + $height * 0.35 )) / 865 ) * ( 865 - y)
     // 0.65 * $height - 75
 $: console.log(bottom)
     // $: idx === 3 && console.log('width / 1450  ',  $width / 1450 )

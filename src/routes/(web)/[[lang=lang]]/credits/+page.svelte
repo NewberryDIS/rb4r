@@ -44,11 +44,31 @@
         bgc = !bgc
     }
     let galOpen = false
-</script>
 
+    function toggleGal(e) {
+        e.stopPropagation()
+        galOpen = !galOpen
+    }
+
+    function handleKeys(e){
+        console.log(e.key)
+        if (e.key === 'Escape'){
+            galOpen = false
+        }
+    }
+
+    function handlClick (e){
+        if (e.target.classList.contains('bgl')){
+
+            galOpen = false
+        }
+    }
+
+</script>
+<svelte:window on:keyup={(e) => handleKeys(e)} />
 <div class="bg-1-image" style="background-image: url('{base}/maps/{bg}')"></div>
 <div class="bg-2-wedge" ></div>
-<main class={bgc ? 'bgl' : 'bgd'}>
+<main class={bgc ? 'bgl' : 'bgd'}  on:click={e => handlClick(e)}>
     <section class="top-level-wrapper main">
         <div class="link-block">
             <a class="arrow-link" href="{base}{lang === 'es' ? '/es' : '/'}"><img width="50" height="50"src="{base}/arrow.png" alt=""></a>
@@ -76,7 +96,7 @@
                     <dd>Sarah Boyd Alvarez</dd>
 
                     <dt>{content[lang].credits.dl[4]}</dt>
-                    <dd>Catherine Gass, <span class="myname" on:click={() => galOpen = !galOpen}>Nicolas White</span>, Jennifer Wolfe</dd>
+                    <dd>Catherine Gass, <span class="myname" on:click={(e) => toggleGal(e)}>Nicolas White</span>, Jennifer Wolfe</dd>
 
                     <dt>{content[lang].credits.dl[5]}</dt>
                     <dd>M. N. Kennedy, Andrea Villasenor</dd>
@@ -161,6 +181,25 @@
         justify-content: space-between;
         align-items: center;
     }
+    @media screen and (min-width: 1000px){
+        main {
+
+        flex-direction: row;
+        }
+        .top-level-wrapper {
+
+        width: clamp(500px, 45vw, 750px);
+        }
+    }
+    @media screen and (max-width: 999px){
+        main {
+        flex-direction: column;
+        }
+        .top-level-wrapper {
+
+        width: 85vw;
+        }
+    }
     .top-level-wrapper {
         position: relative;
         height: max(650px, 80vh );
@@ -175,7 +214,6 @@
         min-width: 0;
     }
     .top-level-wrapper.main {
-        width: clamp(500px, 45vw, 750px);
     }
     section {
         /* width: max(550px, 30vw ); */

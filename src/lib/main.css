@@ -9,7 +9,9 @@ body {
 }
 body {
   /* background: var(--bg-2); */
-  background-image: url("/map-bg.jpg");
+  background-image: url("/lbl-map-bg.png");
+  background-size: cover;
+  background-position: center;
   /* background-attachment: fixed; */
   overflow-x: hidden;
 }
