@@ -1,5 +1,4 @@
 <script>
-    import Dims from '$comps/dims.svelte'
 import {height, width} from '$lib'
 </script>
 <!-- <Dims /> -->

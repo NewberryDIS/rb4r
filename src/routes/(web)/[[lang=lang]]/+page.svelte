@@ -104,7 +104,7 @@
         }
     }
     .banner-toptext {
-        font-size: 32px;
+        font-size: 26px;
     }
 
     .banner-bottomtext {
