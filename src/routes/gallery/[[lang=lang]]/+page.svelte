@@ -4,7 +4,7 @@
     import { page } from "$app/stores";
     import { base } from "$app/paths";
     import Header from "$lib/gallery/components/header.svelte";
-    import Circle from "$lib/gallery/components/circles.svelte";
+    import Circle from "$lib/components/circles.svelte";
     import Square from "$lib/gallery/components/squares.svelte";
     $: lang = $page.params.lang || "en";
     $: content = allContent[lang];

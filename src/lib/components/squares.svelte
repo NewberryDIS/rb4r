@@ -20,8 +20,9 @@
     </a>
 {:else}
     <a href="{base}/{lang === 'es' ? lang + '/' : ''  }{slug}"   id="cardgrid-{idx}" class="cardgrid {cardHover === idx ? 'card-hover' : ''}" on:mouseenter={() => cardHover = idx} on:mouseleave={() => cardHover = 99}  >
-        <div class="grid-image" style="background-image: linear-gradient(to right, rgba(0,0,0,0) 0, 80%, #{tile.color}), url('{base}/{slug}.jpg'); left: 0;"  />
-        <div class="grid-text"  style=" background-color: #{tile.color};">
+        <div class="grid-image" style="background-image: linear-gradient(to right, #{tile.color}cc, #{tile.color}cc), url('{base}/{slug}.jpg'); left: 0;"  />
+        <div class="grid-text">
+        <!-- <div class="grid-text"  style=" background-color: #{tile.color};"> -->
             <div class="grid-country">{tile[lang].country}</div>
             <div class="grid-title"  >{tile[lang].title}</div>
         </div>
@@ -52,66 +53,65 @@
 }
 @media screen and (max-width: 999px) {
     .card {
-        flex: 1 0 auto;
+        /* min-width: 200px; */
+        flex: auto;
         height: 50%;
     }
-    .card-text {
-        flex-basis: initial;
-        /* flex: 1; */
-    }
-    .btm span{
-        font-size: max(3vw, 24px);
-        min-width: 0;
-        word-wrap: break-word;
-    }
     .card-image {
-        /* display: none; */
+        width: 100%;
         height: initial;
         flex: 1;
     }
     .cardgrid {
-        flex: 1 0 auto;
+        flex: 1 1 auto;
         min-width: 30vw;
-    }
-    .grid-text {
-
-        /* min-width: 150px; */
     }
 }
 .grid-image { 
-    border-left:    1px solid var(--midnight);  
-    border-top:      1px solid var(--midnight);
-    border-bottom:   1px solid var(--midnight);
+    /* border-left:    1px solid var(--midnight);   */
+    /* border-top:      1px solid var(--midnight); */
+    /* border-bottom:   1px solid var(--midnight); */
     height: 100%;
+    width: max(200px, 100%);
+        min-width: 200px;
     transition: 200ms;
-    aspect-ratio: 1 / 1;
+    /* aspect-ratio: 1 / 1; */
     overflow: hidden;
     /* border-radius: 50% 0 0 50%; */
     background-position: center;
     background-size: cover;
 }
 .grid-text { 
-    flex:2;
-    padding: 8px 1vw 8px 2vw;
+    position: absolute;
+    top: 0;
+    left: 3vw;
+    bottom: 0;
+    right: 3vw;
+    height: 100%;
+    /* flex:2; */
+    /* padding: 8px 1vw 8px 2vw; */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 } 
 .grid-text > div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    text-align: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
 }
 .grid-title {
-    justify-content: flex-start;
-    font-size: 18px;
-    flex: 1;
+    /* justify-content: flex-start; */
+    font-size: calc(14px + 1vh) ;
+    /* flex: 1; */
 }
 .grid-country {
-    justify-content: flex-end;
-    font-size: 24px;
-    flex-basis: 28px;
+    /* justify-content: flex-end; */
+    /* font-size: 24px; */
+    font-size: calc(12px + 1vh) ;
+    border-bottom: 1px solid rgba(0,0,0,0.5)
+    /* flex-basis: 28px; */
 }
 .cardgrid .card-text, .cardgrid .card-image {
     min-width: 0;

@@ -8,12 +8,14 @@
 
 <header>
     <div class="header-left">
-        <a href="https://www.newberry.org/" class="center nolines" target="_blank">
-            <img src="{base}/NLogo.png" height="64" width="64" alt={content.logoalt} />
-        </a>
         <div class="left-text">
+            <a href="https://www.newberry.org/" class="center nolines" target="_blank">
+                <img src="{base}/NLogo.png" height="64" width="64" alt={content.logoalt} />
+            </a>
             <h1 class="maxi-h1">{content.title}: {content.subtitle}</h1>
         </div>
+                <div class="truncate banner-toptext">{content.hero.header}</div>
+                <div class="truncate banner-bottomtext">{@html content.hero.subtitle}</div>
     </div>
     <div class="header-right">
         <div class="change-lang">
@@ -31,24 +33,83 @@
 </header>
 
 <style>
-    /* .truncate { */
-    /**/
-    /*     white-space: nowrap; */
-    /*     overflow-x: hidden; */
-    /*     overflow-y: visible; */
-    /*     text-overflow: ellipsis; */
-    /* } */
+    .banner-toptext {
+        font-size: 1.3rem;
+        line-height: 1.2rem;
+    }
+    .truncate {
+
+        white-space: nowrap;
+        overflow-x: hidden;
+        overflow-y: visible;
+        text-overflow: ellipsis;
+    }
+    @media screen and (max-width: 650px){
+           header, .header-left { 
+            width: 100%;
+            flex-direction: column;
+            position: relative !important;
+            height: auto !important;
+            /* align-items: stretch !important; */
+        }
+        .left-text {
+            /* max-height: none !important; */
+            text-align: center !important;
+            width: auto;
+            margin-inline: 0 !important;
+            padding: 8px !important;
+        }
+        .maxi-h1 {
+            width: auto !important;
+        }
+        .header-right {
+
+            height: auto !important;
+        }
+        .change-lang {
+            flex-direction: row  !important;
+        }
+    }
+    .header-left {
+        min-width: 0;
+    }
+    @media screen and (max-height: 900px) and ( max-width: 900px){
+        header, .header-left { 
+            width: 100%;
+            flex-direction: column;
+            position: relative !important;
+            height: auto !important;
+            /* align-items: stretch !important; */
+        }
+        .left-text {
+            /* max-height: none !important; */
+            text-align: center !important;
+            width: auto;
+            margin-inline: 0 !important;
+            padding: 8px !important;
+        }
+        .maxi-h1 {
+            width: auto !important;
+        }
+        .header-right {
+
+            height: auto !important;
+        }
+        .change-lang {
+            flex-direction: row  !important;
+        }
+    }
     .left-text {
-        max-height: 75px;
+        /* max-height: 100px; */
         display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: flex-start;
-        margin-inline: 32px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        /* margin-inline: 32px; */
     }
     .maxi-h1 {
         margin: 0;
-        padding: 0;
+        padding: 0 0 0 16px;;
     }
     .maxi-h1 {
         width: 65vw;
@@ -62,7 +123,7 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 75px;
+        height: 100px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -74,8 +135,9 @@
     .header-left {
         min-width: 0;
         display: flex;
+        flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
+        /* align-items: center; */
     }
     .header-left a {
         display: flex;
@@ -83,7 +145,7 @@
         align-items: center;
     }
     .header-left img {
-        height: 64px;
+        height: 56px;
     }
     .header-right h1,
     .header-right h2 {
@@ -99,7 +161,7 @@
     }
     .header-right {
         background: rgb(var(--bg-color-1));
-        height: 75px;
+        /* height: 100px; */
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;

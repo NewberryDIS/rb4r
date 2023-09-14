@@ -1,70 +1,43 @@
 <script>
     import { base } from '$app/paths'
     import { page }  from '$app/stores'
-    import { slugify } from '$lib'
-    import { onMount, tick, onDestroy , beforeUpdate} from 'svelte'
-    import { goto } from '$app/navigation'
-    import StoryMap from '$comps/storymap.svelte'
-    import allContent from '$lib/content.json';
+    import { onMount } from 'svelte'
+    // import '$lib/storymap.css'
     import '$lib/storymap.font.default.css'
-    import '$lib/main.css';
+    import { slugify } from '$lib'
+    import allContent from '$lib/content.json';
     export let data
-    // console.log(data)
+    console.log("data", data.storymapJson)
     $: storymapId = $page.params.id
     $: lang =  $page.params.lang || 'en'
     $: content = allContent[lang]
     $: storymapContent = allContent.tiles.filter(f => slugify(f.en.country) === storymapId)[0]
     $: storymapurl = storymapContent[lang].storymap
-    $: storymapJson = data.storymapJson
-    
-    $: showMap = !!data.storymapJson 
-    async function getOtherLangMap(){
-        showMap = false
-        let url = base + (lang === 'es' ? '/' : '/es/') + storymapId
-        goto(url)
+    $: imgUrl = storymapContent.imagexy ? storymapContent.imagexy + '/max' : 'full/,300'
+    const storymapOptions = {
+        width: 100,
+        height: 100,
+        default_bg_color: {r: 17, g: 26, b: 42, t: 50},
+        // default_bg_color: {r: 234, g: 235, b: 231},
+        storymap: data.storymapJson,
+
     }
+    onMount(() => {
+        console.log(KLStoryMap)
+        var storymap = new KLStoryMap.StoryMap('storymap-div', storymapOptions)
+        window.onresize = function(event) {
+            storymap.updateDisplay(); // this isn't automatic
+        }
+    })
 </script>
 <svelte:head>
     <title>{content.title}</title>
 </svelte:head>
 <main >
-    <div class="left" style="background-image: linear-gradient( rgba(var(--fg-color-1), 0.7), rgba(var(--fg-color-1), 0.7) ), url('{base}/{storymapId}.jpg');" >
-        <div class="bg" ></div>
-        <div class="logo">
-            <a href="https://www.newberry.org/" class="center nolines" target="_blank">
-                <img src="{base}/NLogo_granite.png" height="50" width="50" alt={content.logoalt} />
-            </a>
-            <a class="home-link" href="{base}/{$page.params.lang || ''}" >
-                {content.title}
-            </a>
-        </div>
-        <h1 class="storymap-title">{storymapContent[lang].title}</h1>
-        <!-- <img class="storymap-img" src="https://collections.newberry.org/IIIF3/Image/{storymapContent.image}/{imgUrl}/0/default.jpg" alt=""> -->
-        <div class="btn-box"> 
-            <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another object": "Elige otro objeto"}</a>
-            <div class="mini-btn-box">
-                <!-- <a class="lang-btn" href="{base}/es/{$page.params.id}" style="background: #{storymapContent.color};">{content.es}</a> -->
-                <!-- <a class="lang-btn" href="{base}/{$page.params.id}" style="background: #{storymapContent.color};">{content.en}</a> -->
-                <button class="lang-btn" on:click={getOtherLangMap}  style="background: #{storymapContent.color};">{content.es}</button>
-                <button class="lang-btn" on:click={getOtherLangMap}  style="background: #{storymapContent.color};">{content.en}</button>
-            </div>
-        </div>
-    </div>
-        <div class="right">
-        {#if showMap}
-        <!-- <div class="right" id="storymap-div" /> -->
-        <StoryMap { storymapJson } />
-        {/if} 
-        <!-- <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe> -->
-        <!-- {storymapurl} -->
+    <div class="storymap-div" id="storymap-div">
     </div>
 </main>
 <style>
-    @media screen and (max-width: 700px){
-        .left {
-            display: none !important;
-        }
-    }
     .home-link {
         font-size: 24px;
 
@@ -109,8 +82,7 @@
             background-repeat: no-repeat;
             position: relative;
             padding: 10px;
-            /* flex-basis: 300px; */
-            flex: 1;
+            flex-basis: 300px;
             height: 100vh;
             gap : 10vh;
             display: flex;
@@ -158,7 +130,7 @@
             margin: 10px;
             font-family: 'styrene';
             font-weight: 900;
-            color: rgb(var(--fg-color-1));
+            color: inherit;
             text-decoration: none;
             text-align: center;
             border-radius: 10px;
@@ -206,7 +178,7 @@
             align-items: center;
         }
         .right {
-            flex: 4;
+            flex: 1;
             background: rgb(var(--bg-color-2));
         }
         .right iframe {

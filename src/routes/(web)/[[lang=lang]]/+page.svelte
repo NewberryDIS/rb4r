@@ -4,7 +4,7 @@
     import { page } from '$app/stores';
     import { base } from '$app/paths';
     import Header from '$comps/header.svelte';
-    import Circle from '$comps/rb4r_circles.svelte';
+    import Circle from '$comps/circles.svelte';
     import Square from '$comps/squares.svelte';
     // import Square from '$comps/rb4r_squares.svelte';
     // import Square from '$comps/square.svelte';
@@ -23,12 +23,12 @@
 <main class=" content">
     <Header {content} />
     <div class="circles" id="map" style="background-image: url('{base}/map-bg.jpg'); flex-basis: {Math.max($width * 0.72, $height * 0.5)}px;">
-        <div class="banner-wrapper" style="">
-            <div class="banner">
-                <div class="banner-toptext">{content.hero.header}</div>
-                <div class="banner-bottomtext">{@html content.hero.subtitle}</div>
-            </div>
-        </div>
+        <!-- <div class="banner-wrapper" style=""> -->
+        <!--     <div class="banner"> -->
+        <!--         <div class="banner-toptext">{content.hero.header}</div> -->
+        <!--         <div class="banner-bottomtext">{@html content.hero.subtitle}</div> -->
+        <!--     </div> -->
+        <!-- </div> -->
         {#each allContent.tiles as circe, idx}
             <Circle bind:cardHover {circe} {idx} />
         {/each}
@@ -103,6 +103,11 @@
             padding: 32px;
         }
     }
+@media screen and (max-height: 900px) and ( max-width: 900px){
+        .circles { 
+            display: none !important;
+        }
+}
     .banner-toptext {
         font-size: 26px;
     }

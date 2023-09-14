@@ -109,6 +109,7 @@
                 </dl>
                 <p>{@html content[lang].credits.partners}</p>
                 <p>{@html content[lang].credits.donors}</p>
+                <p>{@html content[lang].credits.thanks}</p>
                 <dl class="the-end">
                     <dt>RaceB4Race&reg;</dt>
                     <dd>{@html content[lang].credits.explan}</dd>
