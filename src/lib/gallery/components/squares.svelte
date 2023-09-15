@@ -9,7 +9,7 @@
 </script>
 
 <a
-    href="{base}/{lang === 'es' ? lang + '/' : ''}{slug}"
+    href="{base}/gallery/{lang === 'es' ? lang + '/' : ''}{slug}"
     class="card card-{idx} {cardHover === idx ? 'card-hover' : ''}"
     on:mouseenter={() => (cardHover = idx)}
     on:mouseleave={() => (cardHover = 99)}

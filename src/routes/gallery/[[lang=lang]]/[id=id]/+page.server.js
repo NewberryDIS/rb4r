@@ -10,8 +10,8 @@ function getStoryMapUrls() {
       results[country] = [];
     }
     results[country].push(
-      nuklUrl + storymap.en.storymap.web + "/published.json",
-      nuklUrl + storymap.es.storymap.web + "/published.json"
+      nuklUrl + storymap.en.storymap.gallery + "/published.json",
+      nuklUrl + storymap.es.storymap.gallery + "/published.json"
     );
   }
   return results;
@@ -25,7 +25,7 @@ export async function load({ params }) {
   const storymapUrls = getStoryMapUrls();
   const smUrl = storymapUrls[id][lang];
 
-  // console.log(smUrl);
+  console.log(smUrl);
 
   const response = await fetch(smUrl);
   const jsonFetchData = await response.json();

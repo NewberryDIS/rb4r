@@ -25,7 +25,7 @@
             <a href="{base}/" class={lang !== 'es' ? 'active' : ''}>
                 {content.en}
             </a>
-            <a href="{base}/{lang ? 'es/' : ''}credits" >
+            <a href="{base}/{lang === 'es' ? 'es/' : ''}credits" >
                 { lang === 'es' ? 'credits' : 'Credits' }
             </a>
         </div>

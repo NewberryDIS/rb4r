@@ -62,12 +62,18 @@
       "en": {
         "country": "Belgium",
         "title": "The Mirror of Human Salvation",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-eng/index.html"
+        "storymap": {
+          "gallery": "rb4r-miroir-eng",
+          "web": "web-rb4r-miroir-eng"
+        }
       },
       "es": {
         "country": "Bélgica",
         "title": "El espejo de la salvación humana",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-miroir-spanish/index.html"
+        "storymap": {
+          "gallery": "rb4r-miroir-spanish",
+          "web": "web-rb4r-miroir-spanish"
+        }
       },
       "color": "caa3b1",
       "x": "585",
@@ -79,12 +85,18 @@
       "en": {
         "country": "Germany",
         "title": "The Four Books of Human Proportion",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-eng-1/index.html"
+        "storymap": {
+          "gallery": "rb4r-durer-eng-1",
+          "web": "web-rb4r-durer-eng"
+        }
       },
       "es": {
         "country": "Alemania",
         "title": "Los cuatro libros de la proporción humana",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-durer-spanish/index.html"
+        "storymap": {
+          "gallery": "rb4r-durer-spanish",
+          "web": "web-rb4r-durer-spanish"
+        }
       },
       "color": "748099",
       "x": "537",
@@ -96,12 +108,15 @@
       "en": {
         "country": "Turkey",
         "title": "The History of the India to the West",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-eng/index.html"
+        "storymap": { "gallery": "rb4r-tarih-eng", "web": "web-rb4r-tarih-eng" }
       },
       "es": {
         "country": "Turquía",
         "title": "Historia de la India occidental",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-tarih-spanish/index.html"
+        "storymap": {
+          "gallery": "rb4r-tarih-spanish",
+          "web": "web-rb4r-tarih-spanish"
+        }
       },
       "color": "b7b9b7",
       "x": "390",
@@ -113,12 +128,18 @@
       "en": {
         "country": "Mexico",
         "title": "Farmers vs. Covarrubias",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeing-race-b4-race-farmers-vs-covarrubias-map-2/index.html"
+        "storymap": {
+          "gallery": "seeing-race-b4-race-farmers-vs-covarrubias-map-2",
+          "web": "web-rb4r-covarrubias-eng"
+        }
       },
       "es": {
         "country": "México",
         "title": "Mapa de territorios mexicanos",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/seeingrbr-covarrubias-spanish-storymap/index.html"
+        "storymap": {
+          "gallery": "seeingrbr-covarrubias-spanish-storymap",
+          "web": "web-rb4r-covarrubias-spanish"
+        }
       },
       "color": "e4cd84",
       "x": "1140",
@@ -130,12 +151,18 @@
       "en": {
         "country": "England",
         "title": "A Wonder of Wonders",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-wonders-eng/index.html"
+        "storymap": {
+          "gallery": "rb4r-wonders-eng-1",
+          "web": "rb4r-wonders-eng"
+        }
       },
       "es": {
         "country": "Inglaterra",
         "title": "Una maravilla de maravillas",
-        "storymap": "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/rb4r-wonders-spanish/index.html"
+        "storymap": {
+          "gallery": "rb4r-wonders-spanish",
+          "web": "web-rb4r-wonders-spanish"
+        }
       },
       "color": "a2a76e",
       "x": "645",

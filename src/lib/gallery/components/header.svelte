@@ -33,18 +33,18 @@
     <div class="header-right">
         <div class="change-lang">
             <a
-                href="{base}/es"
+                href="{base}/gallery/es"
                 class={$page.params.lang === "es" ? "active" : ""}
             >
                 {content.es}
             </a>
             <a
-                href="{base}/"
+                href="{base}/gallery"
                 class={$page.params.lang !== "es" ? "active" : ""}
             >
                 {content.en}
             </a>
-            <a href="{base}/{$page.params.lang ? 'es/' : ''}credits">
+            <a href="{base}/gallery/{$page.params.lang ? 'es/' : ''}credits">
                 <!-- {content.credits} -->
                 credits
             </a>

@@ -2,7 +2,7 @@
 import { base } from "$app/paths";
 export async function load({ fetch, params }) {
   const lang = params.lang ? params.lang : "en";
-  console.log(params.lang || "en");
+  // console.log(params.lang || "en");
   const res = await fetch(`${base}/api/storymap?lang=${lang}&id=${params.id}`);
   // console.log(`/api/atorymap?lang=${lang}&id=${params.id}`);
   const jsonFetchData = await res.json();
