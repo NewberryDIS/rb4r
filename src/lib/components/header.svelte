@@ -35,10 +35,13 @@
 <style>
     .banner-toptext {
         font-size: 1.3rem;
-        line-height: 1.2rem;
+        line-height: 1.3;
+    }
+    .banner-bottomtext {
+
+line-height: 1;
     }
     .truncate {
-
         white-space: nowrap;
         overflow-x: hidden;
         overflow-y: visible;
