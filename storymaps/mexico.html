@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>IFrame StoryMap RB4R</title>
+
+    <link
+      rel="stylesheet"
+      href="//cdn.knightlab.com/libs/storymapjs/latest/css/storymap.css?v2"
+    />
+    "https://uploads.knightlab.com/storymapjs/f16f101e1b9e4f19898b53b294e8d1dd/"
+    <script
+      type="text/javascript"
+      src="https://cdn.knightlab.com/libs/storymapjs/latest/js/storymap-min.js"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-VXBH4RD619");
+    </script>
+  </head>
+  <body>
+    <div id="mapdiv"></div>
+    <style>
+      body,
+      html,
+      .mapdiv {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script>
+      var storymap_data = "amyWingreen.json";
+      var storymap_options = {};
+      var storymap = new VCO.StoryMap(
+        "mapdiv",
+        storymap_data,
+        storymap_options
+      );
+      window.onresize = function (event) {
+        storymap.updateDisplay();
+      };
+    </script>
+  </body>
+</html>

@@ -2,27 +2,14 @@
     import { base } from '$app/paths'
     import { page }  from '$app/stores'
     import { slugify } from '$lib'
-    import { onMount, tick, onDestroy , beforeUpdate} from 'svelte'
-    import { goto } from '$app/navigation'
-    import StoryMap from '$comps/storymap.svelte'
     import allContent from '$lib/content.json';
     import '$lib/storymap.font.default.css'
     import '$lib/main.css';
-    export let data
-    // console.log(data)
     $: storymapId = $page.params.id
     $: lang =  $page.params.lang || 'en'
     $: content = allContent[lang]
     $: storymapContent = allContent.tiles.filter(f => slugify(f.en.country) === storymapId)[0]
-    $: storymapurl = storymapContent[lang].storymap
-    $: storymapJson = data.storymapJson
     
-    $: showMap = !!data.storymapJson 
-    async function getOtherLangMap(){
-        showMap = false
-        let url = base + (lang === 'es' ? '/' : '/es/') + storymapId
-        goto(url)
-    }
 </script>
 <svelte:head>
     <title>{content.title}</title>
@@ -43,20 +30,15 @@
         <div class="btn-box"> 
             <a class="home-btn" href="{base}/{$page.params.lang || ''}" style="background: #{storymapContent.color};">{lang === 'en' ? "Choose another object": "Elige otro objeto"}</a>
             <div class="mini-btn-box">
-                <!-- <a class="lang-btn" href="{base}/es/{$page.params.id}" style="background: #{storymapContent.color};">{content.es}</a> -->
-                <!-- <a class="lang-btn" href="{base}/{$page.params.id}" style="background: #{storymapContent.color};">{content.en}</a> -->
-                <button class="lang-btn" on:click={getOtherLangMap}  style="background: #{storymapContent.color};">{content.es}</button>
-                <button class="lang-btn" on:click={getOtherLangMap}  style="background: #{storymapContent.color};">{content.en}</button>
+                <a class="lang-btn" href="{base}/es/{$page.params.id}" style="background: #{storymapContent.color};">{content.es}</a>
+                <a class="lang-btn" href="{base}/{$page.params.id}" style="background: #{storymapContent.color};">{content.en}</a>
+                <!-- <button class="lang-btn" on:click={getOtherLangMap}  style="background: #{storymapContent.color};">{content.es}</button> -->
+                <!-- <button class="lang-btn" on:click={getOtherLangMap}  style="background: #{storymapContent.color};">{content.en}</button> -->
             </div>
         </div>
     </div>
         <div class="right">
-        {#if showMap}
-        <!-- <div class="right" id="storymap-div" /> -->
-        <StoryMap { storymapJson } />
-        {/if} 
-        <!-- <iframe src="{ storymapurl }" frameborder="0" title="storymap i-frame"></iframe> -->
-        <!-- {storymapurl} -->
+        <iframe src="https://digital.newberry.org/storymaps/{lang}/{ $page.params.id }" frameborder="0" title="storymap i-frame"></iframe>
     </div>
 </main>
 <style>
